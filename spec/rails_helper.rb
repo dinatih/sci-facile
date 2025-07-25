@@ -69,4 +69,64 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Ensure SELENIUM_REMOTE_URL is present in the environment
+  selenium_url = ENV["SELENIUM_REMOTE_URL"]
+  raise "SELENIUM_REMOTE_URL environment variable is missing. Please set it in your devcontainer configuration." unless selenium_url
+
+  rails_service = ENV["RAILS_SERVICE_NAME"] || "rails-app"
+  capybara_port = ENV["CAPYBARA_SERVER_PORT"] || 45678
+  Capybara.server_host = "0.0.0.0"
+  Capybara.app_host = "http://#{rails_service}:#{capybara_port}"
+
+  config.before(:each, type: :system) do
+    driven_by :selenium, using: :chrome, options: { browser: :remote, url: selenium_url }
+  end
+
+  # These hooks automatically start and stop a Rails server for system specs.
+  # This is necessary because, when using Selenium in a separate container,
+  # Capybara cannot launch the Rails server itself on a fixed host/port.
+  # The hooks ensure the server is available for browser-based tests and
+  # cleanly shut it down after the test suite finishes.
+  config.before(:suite) do
+    system_specs_present = RSpec.world.example_groups.any? do |group|
+      group.metadata[:type] == :system
+    end
+
+    if system_specs_present
+      require 'net/http'
+      uri = URI("http://localhost:45678")
+      server_running = begin
+        Net::HTTP.get(uri)
+        true
+      rescue
+        false
+      end
+
+      unless server_running
+        @rails_server_pid = spawn("bundle exec rails server -b 0.0.0.0 -p 45678 -e test")
+        puts "Starting Rails server for system specs..."
+        until begin
+          Net::HTTP.get(uri)
+          true
+        rescue
+          false
+        end
+          sleep 1
+        end
+        puts "Rails server is ready."
+      else
+        puts "Rails server already running on port 45678."
+        @rails_server_pid = nil
+      end
+    end
+    puts "🔎 You can view system tests graphically via NoVNC at: https://localhost:7900"
+  end
+
+  config.after(:suite) do
+    if @rails_server_pid
+      puts "Stopping Rails server..."
+      Process.kill("TERM", @rails_server_pid)
+    end
+  end
 end

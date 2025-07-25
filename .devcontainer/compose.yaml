@@ -17,5 +17,14 @@ services:
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
+    depends_on:
+    - selenium
 
-  
+  selenium:
+    image: selenium/standalone-chromium
+    restart: unless-stopped
+    environment:
+      - VNC_NO_PASSWORD=1
+    ports:
+      - "5900:5900"
+      - "7900:7900"
