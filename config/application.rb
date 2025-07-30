@@ -41,5 +41,9 @@ module SciFacile
 
     config.i18n.default_locale = :fr
     config.time_zone = "Europe/Paris"
+
+    config.generators do |g|
+      g.view_specs false
+    end
   end
 end
