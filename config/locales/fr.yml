@@ -1,0 +1,78 @@
+fr:
+  activerecord:
+    models:
+      company:
+        one: "SCI"
+        other: "SCIs"
+      associate:
+        one: "Associé"
+        other: "Associés"
+      property:
+        one: "Bien immobilier"
+        other: "Biens immobiliers"
+      tenant:
+        one: "Locataire"
+        other: "Locataires"
+      financial_operation:
+        one: "Opération financière"
+        other: "Opérations financières"
+      general_meeting:
+        one: "Assemblée générale"
+        other: "Assemblées générales"
+
+    attributes:
+      company:
+        name: "Nom de la SCI"
+
+      associate:
+        company: "SCI"
+        first_name: "Prénom"
+        last_name: "Nom"
+        email: "Email"
+        shares_count: "Nombre de parts"
+        initial_contribution: "Apport initial (€)"
+        current_account_balance: "Solde du compte courant (€)"
+
+      property:
+        company: "SCI"
+        address: "Adresse"
+        description: "Description"
+        acquisition_date: "Date d'acquisition"
+        acquisition_price: "Prix d'acquisition (€)"
+
+      tenant:
+        property: "Bien immobilier"
+        first_name: "Prénom"
+        last_name: "Nom"
+        email: "Email"
+        rent_amount: "Montant du loyer (€)"
+        charges_amount: "Charges mensuelles (€)"
+        lease_start_date: "Début du bail"
+        lease_end_date: "Fin du bail"
+
+      financial_operation:
+        company: "SCI"
+        property: "Bien immobilier"
+        tenant: "Locataire"
+        associate: "Associé"
+        category: "Catégorie"
+        label: "Libellé"
+        amount: "Montant (€)"
+        date: "Date"
+
+      general_meeting:
+        company: "SCI"
+        date: "Date"
+        title: "Titre"
+        minutes_text: "Procès-verbal"
+
+  helpers:
+    edit: "Modifier ce(tte) %{model}"
+    back: "Retour aux %{model}"
+    destroy: "Supprimer ce(tte) %{model}"
+    new: "Créer un(e) %{model}"
+    show: "Voir ce(tte) %{model}"
+    submit:
+      create: "Créer ce(tte) %{model}"
+      update: "Mettre à jour ce(tte) %{model}"
+    errors_prohibited: "%{count} erreur(s) ont empêché ce(tte) %{model} d'être enregistré(e) :"

@@ -28,4 +28,80 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      company:
+        one: "Company"
+        other: "Companies"
+      associate:
+        one: "Associate"
+        other: "Associates"
+      property:
+        one: "Property"
+        other: "Properties"
+      tenant:
+        one: "Tenant"
+        other: "Tenants"
+      financial_operation:
+        one: "Financial Operation"
+        other: "Financial Operations"
+      general_meeting:
+        one: "General Meeting"
+        other: "General Meetings"
+
+    attributes:
+      company:
+        name: "Company Name"
+
+      associate:
+        company: "Company"
+        first_name: "First Name"
+        last_name: "Last Name"
+        email: "Email"
+        shares_count: "Number of Shares"
+        initial_contribution: "Initial Contribution (€)"
+        current_account_balance: "Current Account Balance (€)"
+
+      property:
+        company: "Company"
+        address: "Address"
+        description: "Description"
+        acquisition_date: "Acquisition Date"
+        acquisition_price: "Acquisition Price (€)"
+
+      tenant:
+        property: "Property"
+        first_name: "First Name"
+        last_name: "Last Name"
+        email: "Email"
+        rent_amount: "Rent Amount (€)"
+        charges_amount: "Monthly Charges (€)"
+        lease_start_date: "Lease Start Date"
+        lease_end_date: "Lease End Date"
+
+      financial_operation:
+        company: "Company"
+        property: "Property"
+        tenant: "Tenant"
+        associate: "Associate"
+        category: "Category"
+        label: "Label"
+        amount: "Amount (€)"
+        date: "Date"
+
+      general_meeting:
+        company: "Company"
+        date: "Date"
+        title: "Title"
+        minutes_text: "Meeting Minutes"
+
+  helpers:
+    edit: "Edit %{model}"
+    back: "Back to %{model}"
+    destroy: "Delete %{model}"
+    new: "New %{model}"
+    show: "Show this %{model}"
+    submit:
+      create: "Create %{model}"
+      update: "Update %{model}"
+    errors_prohibited: "%{count} error(s) prohibited this %{model} from being saved:"
