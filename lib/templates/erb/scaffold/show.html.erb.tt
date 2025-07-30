@@ -1,0 +1,10 @@
+<%% content_for :title, t("activerecord.models.<%= singular_table_name %>.one") %>
+
+<%%= render @<%= singular_table_name %> %>
+
+<div>
+  <%%= link_to t("helpers.edit", model: t("activerecord.models.<%= singular_table_name %>.one")), <%= edit_helper(type: :path) %>, class: "btn btn-outline-primary" %> |   
+  <%%= link_to t("helpers.back", model: t("activerecord.models.<%= singular_table_name %>.other")), <%= index_helper(type: :path) %>, class: "btn btn-outline-primary" %>
+
+  <%%= button_to t("helpers.destroy", model: t("activerecord.models.<%= singular_table_name %>.one")), <%= model_resource_name(prefix: "@") %>, method: :delete, class: "btn btn-danger mt-2" %>
+</div>

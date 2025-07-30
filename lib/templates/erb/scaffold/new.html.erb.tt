@@ -1,0 +1,11 @@
+<%% content_for :title, t("helpers.new", model: t("activerecord.models.<%= singular_table_name %>.one")) %>
+
+<h1><%%= t("helpers.new", model: t("activerecord.models.<%= singular_table_name %>.one")) %></h1>
+
+<%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
+
+<br>
+
+<div>
+  <%%= link_to t("helpers.back", model: t("activerecord.models.<%= singular_table_name %>.other")), <%= index_helper(type: :path) %>, class: "btn btn-outline-primary" %>
+</div>
