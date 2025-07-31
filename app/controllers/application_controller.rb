@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
 
   def index
     # This action can be used to render a default view or redirect to another action.
-    render plain: "Welcome to the Application!"
+    render html: "Welcome to the Application!", layout: "application"
   end
 end

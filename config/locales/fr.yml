@@ -67,19 +67,18 @@ fr:
         minutes_text: "Procès-verbal"
 
   helpers:
-    edit: "Modifier ce(tte) %{model}"
+    edit: "Modifier ce/cette %{model}"
     back: "Retour aux %{model}"
-    destroy: "Supprimer ce(tte) %{model}"
+    destroy: "Supprimer ce/cette %{model}"
     new: "Créer un(e) %{model}"
-    show: "Voir ce(tte) %{model}"
+    show: "Voir ce/cette %{model}"
     submit:
-      create: "Créer ce(tte) %{model}"
-      update: "Mettre à jour ce(tte) %{model}"
+      create: "Créer ce/cette %{model}"
+      update: "Mettre à jour ce/cette %{model}"
     errors_prohibited:
-      one: "%{count} erreur a empêché ce(tte) %{model} d'être enregistré(e) :"
-      other: "%{count} erreurs ont empêché ce(tte) %{model} d'être enregistré(e) :"
-     
-    
+      one: "%{count} erreur a empêché ce/cette %{model} d'être enregistré(e) :"
+      other: "%{count} erreurs ont empêché ce/cette %{model} d'être enregistré(e) :"
+
   errors:
     format: "%{attribute} %{message}"
     messages:
