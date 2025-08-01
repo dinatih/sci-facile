@@ -5,8 +5,8 @@ fr:
         one: "SCI"
         other: "SCIs"
       associate:
-        one: "Associé"
-        other: "Associés"
+        one: "Associé(e)"
+        other: "Associé(e)s"
       property:
         one: "Bien immobilier"
         other: "Biens immobiliers"
@@ -54,7 +54,7 @@ fr:
         company: "SCI"
         property: "Bien immobilier"
         tenant: "Locataire"
-        associate: "Associé"
+        associate: "Associé(e)"
         category: "Catégorie"
         label: "Libellé"
         amount: "Montant (€)"
