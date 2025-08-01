@@ -83,6 +83,8 @@ RSpec.configure do |config|
     driven_by :selenium, using: :chrome, options: { browser: :remote, url: selenium_url }
   end
 
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
   # These hooks automatically start and stop a Rails server for system specs.
   # This is necessary because, when using Selenium in a separate container,
   # Capybara cannot launch the Rails server itself on a fixed host/port.
