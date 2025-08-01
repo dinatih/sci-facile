@@ -1,2 +1,10 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+
+// merge with existing $theme-colors map
+$theme-colors: map-merge($theme-colors, (
+  "primary": $blue-600
+));
+
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
