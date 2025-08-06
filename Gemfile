@@ -56,6 +56,9 @@ group :development, :test do
 
   gem "rspec-rails", "~> 8.0.0"
   gem "factory_bot_rails", "~> 6.0"
+
+  gem "rails-erd"
+  gem "railroady"
 end
 
 group :development do
