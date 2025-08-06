@@ -107,6 +107,8 @@ RSpec.configure do |config|
 
       unless server_running
         @rails_server_pid = spawn("bundle exec rails server -b 0.0.0.0 -p 45678 -e test")
+        File.write("tmp/rails_test_server.pid", @rails_server_pid)
+
         puts "Starting Rails server for system specs..."
         until begin
           Net::HTTP.get(uri)
@@ -119,16 +121,17 @@ RSpec.configure do |config|
         puts "Rails server is ready."
       else
         puts "Rails server already running on port 45678."
-        @rails_server_pid = nil
       end
     end
     puts "🔎 You can view system tests graphically via NoVNC at: https://localhost:7900"
   end
 
   config.after(:suite) do
-    if @rails_server_pid
+    if File.exist?("tmp/rails_test_server.pid")
+      pid = File.read("tmp/rails_test_server.pid").to_i
       puts "Stopping Rails server..."
-      Process.kill("TERM", @rails_server_pid)
+      Process.kill("TERM", pid)
+      File.delete("tmp/rails_test_server.pid")
     end
   end
 end
