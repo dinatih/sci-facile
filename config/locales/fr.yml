@@ -29,6 +29,8 @@ fr:
         first_name: "Prénom"
         last_name: "Nom"
         email: "Email"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du Mot de passe"
         shares_count: "Nombre de parts"
         initial_contribution: "Apport initial (€)"
         current_account_balance: "Solde du compte courant (€)"
