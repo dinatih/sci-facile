@@ -34,6 +34,19 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+module CapybaraSlowMo
+  def click_button(*)
+    super.tap { sleep 0.5 }
+  end
+  def click_link(*)
+    super.tap { sleep 0.5 }
+  end
+  def fill_in(*)
+    super.tap { sleep 0.5 }
+  end
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
@@ -106,6 +119,8 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :feature) do
+    Capybara.current_session.extend(CapybaraSlowMo)
+
     # :rack_test driver's Rack app under test shares database connection
     # with the specs, so continue to use transaction strategy for speed.
     driver_shares_db_connection_with_specs = Capybara.current_driver == :rack_test
