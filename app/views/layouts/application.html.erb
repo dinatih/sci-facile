@@ -23,9 +23,12 @@
   </head>
 
   <body>
-    <div class="<%= current_page?(root_path) ? '' : 'container' %>">
+    <%= render 'shared/navbar' %>
+    <div class="container" %>
       <%= render 'shared/flash_messages' %>
-      <%= yield %>
+      <div style="">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

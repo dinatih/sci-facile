@@ -1,0 +1,37 @@
+<div id="<%= dom_id company %>">
+  <p>
+    <strong><%= t("activerecord.attributes.company.name") %>:</strong>
+    <%= company.name %>
+  </p>
+  <strong><%= t("activerecord.models.associate.other") %>:</strong>
+
+  <div id="associates">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"><%= t("activerecord.attributes.associate.first_name") %></th>
+          <th scope="col"><%= t("activerecord.attributes.associate.last_name") %></th>
+          <th scope="col"><%= t("activerecord.attributes.associate.email") %></th>
+          <th scope="col"><%= t("activerecord.attributes.associate.shares_count") %></th>
+          <th scope="col"><%= t("activerecord.attributes.associate.initial_contribution") %></th>
+          <th scope="col"><%= t("activerecord.attributes.associate.current_account_balance") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% company.associates.each_with_index do |associate, index| %>
+          <tr>
+            <th scope="row"><%= link_to index + 1, admin_company_associate_path(company, associate) %></th>
+            <td><%= associate.first_name %></td>
+            <td><%= associate.last_name %></td>
+            <td><%= associate.email %></td>
+            <td><%= associate.shares_count %></td>
+            <td><%= associate.initial_contribution %></td>
+            <td><%= associate.current_account_balance %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to t("helpers.new", model: t("activerecord.models.associate.one")), new_admin_company_associate_path(company), class: "btn btn-outline-primary" %>
+</div>

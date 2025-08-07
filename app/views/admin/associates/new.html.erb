@@ -1,0 +1,11 @@
+<% content_for :title, t("helpers.new", model: t("activerecord.models.associate.one")) %>
+
+<h1><%= t("helpers.new", model: t("activerecord.models.associate.one")) %></h1>
+
+<%= render "form", associate: @associate %>
+
+<br>
+
+<div>
+  <%= link_to t("helpers.back", model: t("activerecord.models.associate.other")), company_associates_path(@company), class: "btn btn-outline-primary" %>
+</div>

@@ -13,11 +13,22 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   devise_for :admin_users
+  devise_for :associates, controllers: { registrations: "associates/registrations", sessions: "associates/sessions" }
+
+  resources :companies do
+    resources :associates
+  end
+
   authenticate :admin_user do
     namespace :admin do
       root "dashboard#index"
 
       resources :admin_users
+
+      resources :companies do
+        resources :associates
+      end
+      resources :associates, only: [ :index ]
     end
   end
 end

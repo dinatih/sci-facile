@@ -1,0 +1,10 @@
+<% content_for :title, t("activerecord.models.company.one") %>
+
+<%= render @company %>
+
+<div>
+  <%= link_to t("helpers.edit", model: t("activerecord.models.company.one")), edit_company_path(@company), class: "btn btn-outline-primary" %> |   
+  <%= link_to t("helpers.back", model: t("activerecord.models.company.other")), companies_path, class: "btn btn-outline-primary" %>
+
+  <%= button_to t("helpers.destroy", model: t("activerecord.models.company.one")), @company, method: :delete, class: "btn btn-danger mt-2" %>
+</div>
