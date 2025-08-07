@@ -11,8 +11,8 @@ end
 AdminUser.destroy_all
 Company.destroy_all
 Associate.destroy_all
-# Property.destroy_all
-# Tenant.destroy_all
+Property.destroy_all
+Tenant.destroy_all
 # FinancialOperation.destroy_all
 # GeneralMeeting.destroy_all
 
@@ -24,7 +24,7 @@ FactoryBot.create(:admin_user, email: 'admin@sci-facile.com')
 
     # Add properties with tenants
     2.times do
-      FactoryBot.create(:property, :apartment, company: company)
+      FactoryBot.create(:property, :apartment, :with_tenant, company: company)
     end
 
   #   # Add financial operations

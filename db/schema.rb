@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_07_003725) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_07_012605) do
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -64,6 +64,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_07_003725) do
     t.index ["company_id"], name: "index_properties_on_company_id"
   end
 
+  create_table "tenants", force: :cascade do |t|
+    t.integer "property_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.decimal "rent_amount"
+    t.decimal "charges_amount"
+    t.date "lease_start_date"
+    t.date "lease_end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_tenants_on_property_id"
+  end
+
   add_foreign_key "associates", "companies"
   add_foreign_key "properties", "companies"
+  add_foreign_key "tenants", "properties"
 end

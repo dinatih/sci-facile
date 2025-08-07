@@ -1,0 +1,14 @@
+<% content_for :title, t("activerecord.models.tenant.other") %>
+
+<h1><%= t("activerecord.models.tenant.other") %></h1>
+
+<div id="tenants">
+  <% @tenants.each do |tenant| %>
+    <%= render tenant %>
+    <p>
+      <%= link_to t("helpers.show", model: t("activerecord.models.tenant.one")), tenant, class: "btn btn-outline-primary" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to t("helpers.new", model: t("activerecord.models.tenant.one")), new_tenant_path, class: "btn btn-outline-primary" %>

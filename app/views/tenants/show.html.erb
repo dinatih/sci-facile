@@ -1,0 +1,10 @@
+<% content_for :title, t("activerecord.models.tenant.one") %>
+
+<%= render @tenant %>
+
+<div>
+  <%= link_to t("helpers.edit", model: t("activerecord.models.tenant.one")), edit_tenant_path(@tenant), class: "btn btn-outline-primary" %> |   
+  <%= link_to t("helpers.back", model: t("activerecord.models.tenant.other")), tenants_path, class: "btn btn-outline-primary" %>
+
+  <%= button_to t("helpers.destroy", model: t("activerecord.models.tenant.one")), @tenant, method: :delete, class: "btn btn-danger mt-2" %>
+</div>
