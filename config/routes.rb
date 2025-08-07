@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :companies do
     resources :associates
+    resources :properties
   end
 
   authenticate :admin_user do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
 
       resources :companies do
         resources :associates
+        resources :properties
       end
       resources :associates, only: [ :index ]
     end

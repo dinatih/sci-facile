@@ -3,8 +3,8 @@
     <strong><%= t("activerecord.attributes.company.name") %>:</strong>
     <%= company.name %>
   </p>
-  <strong><%= t("activerecord.models.associate.other") %>:</strong>
 
+  <h3><%= t("activerecord.models.associate.other") %>:</h3>
   <div id="associates">
     <table class="table">
       <thead>
@@ -34,4 +34,31 @@
     </table>
   </div>
   <%= link_to t("helpers.new", model: t("activerecord.models.associate.one")), new_admin_company_associate_path(company), class: "btn btn-outline-primary" %>
+
+  <h3><%= t("activerecord.models.property.other") %>:</h3>
+  <div id="properties">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"><%= t("activerecord.attributes.property.address") %></th>
+          <th scope="col"><%= t("activerecord.attributes.property.description") %></th>
+          <th scope="col"><%= t("activerecord.attributes.property.acquisition_date") %></th>
+          <th scope="col"><%= t("activerecord.attributes.property.acquisition_price") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% company.properties.each_with_index do |property, index| %>
+          <tr>
+            <th scope="row"><%= link_to index + 1, admin_company_property_path(company, property) %></th>
+            <td><%= property.address %></td>
+            <td><%= property.description %></td>
+            <td><%= property.acquisition_date %></td>
+            <td><%= property.acquisition_price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to t("helpers.new", model: t("activerecord.models.property.one")), new_admin_company_property_path(company), class: "btn btn-outline-primary" %>
 </div>

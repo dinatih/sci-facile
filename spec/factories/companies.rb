@@ -17,7 +17,7 @@ FactoryBot.define do
     trait :complete do
       after(:create) do |company|
         create_list(:associate, 3, company: company)
-        # create_list(:property, 2, company: company)
+        create_list(:property, 2, company: company)
       end
     end
   end

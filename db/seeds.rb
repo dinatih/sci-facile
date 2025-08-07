@@ -22,10 +22,10 @@ FactoryBot.create(:admin_user, email: 'admin@sci-facile.com')
 5.times do
   company = FactoryBot.create(:company, :complete)
 
-  #   # Add properties with tenants
-  #   2.times do
-  #     FactoryBot.create(:property, :apartment, :with_tenant, company: company)
-  #   end
+    # Add properties with tenants
+    2.times do
+      FactoryBot.create(:property, :apartment, company: company)
+    end
 
   #   # Add financial operations
   #   3.times do
