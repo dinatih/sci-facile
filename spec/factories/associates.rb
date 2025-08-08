@@ -3,7 +3,7 @@ FactoryBot.define do
     company
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    email { Faker::Internet.email(name: "#{first_name} #{last_name}") }
+    email { Faker::Internet.email(name: "#{I18n.transliterate(first_name)} #{I18n.transliterate(last_name)}") }
     shares_count { rand(1..1000) }
     initial_contribution { rand(1000..50000) }
     current_account_balance { rand(-5000..10000) }
