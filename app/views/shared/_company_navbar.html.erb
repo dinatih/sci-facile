@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="#">SCI-Facile <i class="fas fa-building me-2"></i></a>
+    <%= link_to company_path(@company), class: "navbar-brand fw-bold text-primary"  do %>
+      SCI-Facile <i class="fas fa-building"></i> <%= @company.name %>
+    <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,16 +10,34 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/#accueil">Accueil</a>
+          <%= link_to company_associates_path(@company), class: "nav-link" do %>
+            <i class="fas fa-user-group text-primary"></i>
+            <%= t("activerecord.models.associate.other") %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/#fonctionnalites">Fonctionnalités</a>
+          <%= link_to company_properties_path(@company), class: "nav-link" do %>
+            <i class="fas fa-building text-primary"></i>
+            <%= t("activerecord.models.property.other") %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/#temoignages">Témoignages</a>
+          <%= link_to company_financial_operations_path(@company), class: "nav-link" do %>
+            <i class="fas fa-file-invoice-dollar text-primary"></i>
+            <%= t("activerecord.models.financial_operation.other") %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/#tarif">Tarif</a>
+          <%= link_to company_tenants_path(@company), class: "nav-link" do %>
+            <i class="fas fa-key text-primary"></i>
+            <%= t("activerecord.models.tenant.other") %>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to company_general_meetings_path(@company), class: "nav-link" do %>
+            <i class="fas fa-pen text-primary"></i>
+            <%= t("activerecord.models.general_meeting.other") %>
+          <% end %>
         </li>
         <% if associate_signed_in? %>
           <li class="nav-item ms-2">

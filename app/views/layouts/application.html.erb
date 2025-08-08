@@ -22,8 +22,9 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body style="padding-top: 56px;">
+  <body style="padding-top: <%= current_page?('/') ? '56px' : '72px' %>;">
     <%= render 'shared/navbar' %>
+    <%= render 'shared/company_navbar' if @company %>
     <div class="<%= current_page?('/') ? '' : 'container' %>">
       <%= render 'shared/flash_messages' %>
       <div>
