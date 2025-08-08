@@ -5,6 +5,7 @@ class Associate < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :company
+  has_many :financial_operations, dependent: :destroy
 
   accepts_nested_attributes_for :company, allow_destroy: true
 end

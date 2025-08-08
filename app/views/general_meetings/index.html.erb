@@ -1,0 +1,14 @@
+<% content_for :title, t("activerecord.models.general_meeting.other") %>
+
+<h1><%= t("activerecord.models.general_meeting.other") %></h1>
+
+<div id="general_meetings">
+  <% @general_meetings.each do |general_meeting| %>
+    <%= render general_meeting %>
+    <p>
+      <%= link_to t("helpers.show", model: t("activerecord.models.general_meeting.one")), general_meeting, class: "btn btn-outline-primary" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to t("helpers.new", model: t("activerecord.models.general_meeting.one")), new_general_meeting_path, class: "btn btn-outline-primary" %>

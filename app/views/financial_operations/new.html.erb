@@ -1,0 +1,11 @@
+<% content_for :title, t("helpers.new", model: t("activerecord.models.financial_operation.one")) %>
+
+<h1><%= t("helpers.new", model: t("activerecord.models.financial_operation.one")) %></h1>
+
+<%= render "form", financial_operation: @financial_operation %>
+
+<br>
+
+<div>
+  <%= link_to t("helpers.back", model: t("activerecord.models.financial_operation.other")), financial_operations_path, class: "btn btn-outline-primary" %>
+</div>

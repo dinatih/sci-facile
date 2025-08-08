@@ -1,0 +1,48 @@
+<%= form_with(model: financial_operation, html: { class: "row g-3" }) do |form| %>
+  <% if financial_operation.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= t("helpers.errors_prohibited", count: financial_operation.errors.count, model: t("activerecord.models.financial_operation.one")) %></h2>
+      <ul>
+        <% financial_operation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-12">
+    <%= form.label :company_id, class: "form-label" %>
+    <%= form.text_field :company_id, class: "form-control" %>
+  </div>
+  <div class="col-12">
+    <%= form.label :property_id, class: "form-label" %>
+    <%= form.text_field :property_id, class: "form-control" %>
+  </div>
+  <div class="col-12">
+    <%= form.label :tenant_id, class: "form-label" %>
+    <%= form.text_field :tenant_id, class: "form-control" %>
+  </div>
+  <div class="col-12">
+    <%= form.label :associate_id, class: "form-label" %>
+    <%= form.text_field :associate_id, class: "form-control" %>
+  </div>
+  <div class="col-12">
+    <%= form.label :category, class: "form-label" %>
+    <%= form.text_field :category, class: "form-control" %>
+  </div>
+  <div class="col-12">
+    <%= form.label :label, class: "form-label" %>
+    <%= form.text_field :label, class: "form-control" %>
+  </div>
+  <div class="col-12">
+    <%= form.label :amount, class: "form-label" %>
+    <%= form.text_field :amount, class: "form-control" %>
+  </div>
+  <div class="col-12">
+    <%= form.label :date, class: "form-label" %>
+    <%= form.date_field :date, class: "form-control" %>
+  </div>
+  <div class="col-12">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_07_012605) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_07_013951) do
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -53,6 +53,33 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_07_012605) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "financial_operations", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "property_id"
+    t.integer "tenant_id"
+    t.integer "associate_id"
+    t.string "category"
+    t.string "label"
+    t.decimal "amount"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["associate_id"], name: "index_financial_operations_on_associate_id"
+    t.index ["company_id"], name: "index_financial_operations_on_company_id"
+    t.index ["property_id"], name: "index_financial_operations_on_property_id"
+    t.index ["tenant_id"], name: "index_financial_operations_on_tenant_id"
+  end
+
+  create_table "general_meetings", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.date "date"
+    t.string "title"
+    t.text "minutes_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_general_meetings_on_company_id"
+  end
+
   create_table "properties", force: :cascade do |t|
     t.integer "company_id", null: false
     t.string "address"
@@ -79,6 +106,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_07_012605) do
   end
 
   add_foreign_key "associates", "companies"
+  add_foreign_key "financial_operations", "associates"
+  add_foreign_key "financial_operations", "companies"
+  add_foreign_key "financial_operations", "properties"
+  add_foreign_key "financial_operations", "tenants"
+  add_foreign_key "general_meetings", "companies"
   add_foreign_key "properties", "companies"
   add_foreign_key "tenants", "properties"
 end

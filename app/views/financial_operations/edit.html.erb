@@ -1,0 +1,14 @@
+<% content_for :title, t("helpers.edit", model: t("activerecord.models.financial_operation.one")) %>
+
+<h1 class="mb-4"><%= t("helpers.edit", model: t("activerecord.models.financial_operation.one")) %></h1>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <%= render "form", financial_operation: @financial_operation %>
+  </div>
+</div>
+
+<div class="mb-3">
+  <%= link_to t("helpers.show", model: t("activerecord.models.financial_operation.one")), @financial_operation, class: "btn btn-outline-primary me-2" %>
+  <%= link_to t("helpers.back", model: t("activerecord.models.financial_operation.other")), financial_operations_path, class: "btn btn-outline-secondary" %>
+</div>

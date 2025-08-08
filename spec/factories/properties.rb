@@ -1,4 +1,3 @@
-# spec/factories/properties.rb
 FactoryBot.define do
   factory :property do
     company

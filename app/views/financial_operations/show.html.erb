@@ -1,0 +1,10 @@
+<% content_for :title, t("activerecord.models.financial_operation.one") %>
+
+<%= render @financial_operation %>
+
+<div>
+  <%= link_to t("helpers.edit", model: t("activerecord.models.financial_operation.one")), edit_financial_operation_path(@financial_operation), class: "btn btn-outline-primary" %> |   
+  <%= link_to t("helpers.back", model: t("activerecord.models.financial_operation.other")), financial_operations_path, class: "btn btn-outline-primary" %>
+
+  <%= button_to t("helpers.destroy", model: t("activerecord.models.financial_operation.one")), @financial_operation, method: :delete, class: "btn btn-danger mt-2" %>
+</div>
