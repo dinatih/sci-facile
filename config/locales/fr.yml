@@ -155,6 +155,7 @@ fr:
     formats:
       default: "%d/%m/%Y"
       short: "%e %b"
+      medium: "%e %b %Y"
       long: "%e %B %Y"
       month: "%B %Y"
     month_names:
