@@ -3,8 +3,8 @@
 <%= render @general_meeting %>
 
 <div>
-  <%= link_to t("helpers.edit", model: t("activerecord.models.general_meeting.one")), edit_general_meeting_path(@general_meeting), class: "btn btn-outline-primary" %> |   
-  <%= link_to t("helpers.back", model: t("activerecord.models.general_meeting.other")), general_meetings_path, class: "btn btn-outline-primary" %>
+  <%= link_to t("helpers.edit", model: t("activerecord.models.general_meeting.one")), edit_company_general_meeting_path(@company, @general_meeting), class: "btn btn-outline-primary" %> |   
+  <%= link_to t("helpers.back", model: t("activerecord.models.general_meeting.other")), company_general_meetings_path(@company), class: "btn btn-outline-primary" %>
 
-  <%= button_to t("helpers.destroy", model: t("activerecord.models.general_meeting.one")), @general_meeting, method: :delete, class: "btn btn-danger mt-2" %>
+  <%= button_to t("helpers.destroy", model: t("activerecord.models.general_meeting.one")), [@company, @general_meeting], method: :delete, class: "btn btn-danger mt-2" %>
 </div>

@@ -6,9 +6,9 @@
   <% @properties.each do |property| %>
     <%= render property %>
     <p>
-      <%= link_to t("helpers.show", model: t("activerecord.models.property.one")), property, class: "btn btn-outline-primary" %>
+      <%= link_to t("helpers.show", model: t("activerecord.models.property.one")), [@company, property], class: "btn btn-outline-primary" %>
     </p>
   <% end %>
 </div>
 
-<%= link_to t("helpers.new", model: t("activerecord.models.property.one")), new_property_path, class: "btn btn-outline-primary" %>
+<%= link_to t("helpers.new", model: t("activerecord.models.property.one")), new_company_property_path(@company), class: "btn btn-outline-primary" %>

@@ -6,9 +6,9 @@
   <% @tenants.each do |tenant| %>
     <%= render tenant %>
     <p>
-      <%= link_to t("helpers.show", model: t("activerecord.models.tenant.one")), tenant, class: "btn btn-outline-primary" %>
+      <%= link_to t("helpers.show", model: t("activerecord.models.tenant.one")), [@company, tenant], class: "btn btn-outline-primary" %>
     </p>
   <% end %>
 </div>
 
-<%= link_to t("helpers.new", model: t("activerecord.models.tenant.one")), new_tenant_path, class: "btn btn-outline-primary" %>
+<%= link_to t("helpers.new", model: t("activerecord.models.tenant.one")), new_company_tenant_path(@company), class: "btn btn-outline-primary" %>

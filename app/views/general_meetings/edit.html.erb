@@ -4,11 +4,11 @@
 
 <div class="card mb-4">
   <div class="card-body">
-    <%= render "form", general_meeting: @general_meeting %>
+    <%= render "form", company: @company, general_meeting: @general_meeting %>
   </div>
 </div>
 
 <div class="mb-3">
-  <%= link_to t("helpers.show", model: t("activerecord.models.general_meeting.one")), @general_meeting, class: "btn btn-outline-primary me-2" %>
-  <%= link_to t("helpers.back", model: t("activerecord.models.general_meeting.other")), general_meetings_path, class: "btn btn-outline-secondary" %>
+  <%= link_to t("helpers.show", model: t("activerecord.models.general_meeting.one")), [@company, @general_meeting], class: "btn btn-outline-primary me-2" %>
+  <%= link_to t("helpers.back", model: t("activerecord.models.general_meeting.other")), company_general_meetings_path(@company), class: "btn btn-outline-secondary" %>
 </div>

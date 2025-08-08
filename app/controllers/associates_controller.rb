@@ -68,6 +68,7 @@ class AssociatesController < ApplicationController
     def set_company
       @company = Company.find(params.expect(:company_id))
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_associate
       @associate = @company.associates.find(params.expect(:id))

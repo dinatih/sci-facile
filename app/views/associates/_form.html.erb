@@ -1,4 +1,4 @@
-<%= form_with(model: associate, url: company_associates_path(@company), html: { class: "row g-3" }) do |form| %>
+<%= form_with(model: [@company, associate], html: { class: "row g-3" }) do |form| %>
   <% if associate.errors.any? %>
     <div class="alert alert-danger">
       <h2><%= t("helpers.errors_prohibited", count: associate.errors.count, model: t("activerecord.models.associate.one")) %></h2>

@@ -1,4 +1,4 @@
-<%= form_with(model: tenant, html: { class: "row g-3" }) do |form| %>
+<%= form_with(model: [@company, tenant], html: { class: "row g-3" }) do |form| %>
   <% if tenant.errors.any? %>
     <div class="alert alert-danger">
       <h2><%= t("helpers.errors_prohibited", count: tenant.errors.count, model: t("activerecord.models.tenant.one")) %></h2>

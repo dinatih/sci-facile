@@ -1,4 +1,4 @@
-<%= form_with(model: property, html: { class: "row g-3" }) do |form| %>
+<%= form_with(model: [@company, property], html: { class: "row g-3" }) do |form| %>
   <% if property.errors.any? %>
     <div class="alert alert-danger">
       <h2><%= t("helpers.errors_prohibited", count: property.errors.count, model: t("activerecord.models.property.one")) %></h2>
@@ -10,10 +10,6 @@
     </div>
   <% end %>
 
-  <div class="col-12">
-    <%= form.label :company_id, class: "form-label" %>
-    <%= form.text_field :company_id, class: "form-control" %>
-  </div>
   <div class="col-12">
     <%= form.label :address, class: "form-label" %>
     <%= form.text_field :address, class: "form-control" %>

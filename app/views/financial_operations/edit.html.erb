@@ -9,6 +9,6 @@
 </div>
 
 <div class="mb-3">
-  <%= link_to t("helpers.show", model: t("activerecord.models.financial_operation.one")), @financial_operation, class: "btn btn-outline-primary me-2" %>
-  <%= link_to t("helpers.back", model: t("activerecord.models.financial_operation.other")), financial_operations_path, class: "btn btn-outline-secondary" %>
+  <%= link_to t("helpers.show", model: t("activerecord.models.financial_operation.one")), [@company, @financial_operation], class: "btn btn-outline-primary me-2" %>
+  <%= link_to t("helpers.back", model: t("activerecord.models.financial_operation.other")), company_financial_operations_path(@company), class: "btn btn-outline-secondary" %>
 </div>

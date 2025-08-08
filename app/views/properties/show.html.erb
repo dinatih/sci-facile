@@ -3,8 +3,8 @@
 <%= render @property %>
 
 <div>
-  <%= link_to t("helpers.edit", model: t("activerecord.models.property.one")), edit_property_path(@property), class: "btn btn-outline-primary" %> |   
-  <%= link_to t("helpers.back", model: t("activerecord.models.property.other")), properties_path, class: "btn btn-outline-primary" %>
+  <%= link_to t("helpers.edit", model: t("activerecord.models.property.one")), edit_company_property_path(@company, @property), class: "btn btn-outline-primary" %> |   
+  <%= link_to t("helpers.back", model: t("activerecord.models.property.other")), company_properties_path(@company), class: "btn btn-outline-primary" %>
 
-  <%= button_to t("helpers.destroy", model: t("activerecord.models.property.one")), @property, method: :delete, class: "btn btn-danger mt-2" %>
+  <%= button_to t("helpers.destroy", model: t("activerecord.models.property.one")), [@company, @property], method: :delete, class: "btn btn-danger mt-2" %>
 </div>

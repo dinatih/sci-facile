@@ -1,9 +1,10 @@
 class PropertiesController < ApplicationController
+  before_action :set_company
   before_action :set_property, only: %i[ show edit update destroy ]
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.all
+    @properties = @company.properties
   end
 
   # GET /properties/1 or /properties/1.json
@@ -12,7 +13,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties/new
   def new
-    @property = Property.new
+    @property = @company.properties.build
   end
 
   # GET /properties/1/edit
@@ -21,11 +22,11 @@ class PropertiesController < ApplicationController
 
   # POST /properties or /properties.json
   def create
-    @property = Property.new(property_params)
+    @property = @company.properties.build(property_params)
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to @property, notice: "Property was successfully created." }
+        format.html { redirect_to [ @company, @property ], notice: "Property was successfully created." }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class PropertiesController < ApplicationController
   def update
     respond_to do |format|
       if @property.update(property_params)
-        format.html { redirect_to @property, notice: "Property was successfully updated." }
+        format.html { redirect_to [ @company, @property ], notice: "Property was successfully updated." }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,15 +53,19 @@ class PropertiesController < ApplicationController
     @property.destroy!
 
     respond_to do |format|
-      format.html { redirect_to properties_path, status: :see_other, notice: "Property was successfully destroyed." }
+      format.html { redirect_to company_properties_path(@company), status: :see_other, notice: "Property was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_company
+      @company = Company.find(params.expect(:company_id))
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_property
-      @property = Property.find(params.expect(:id))
+      @property = @company.properties.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
