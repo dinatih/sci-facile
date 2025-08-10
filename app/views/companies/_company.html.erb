@@ -77,6 +77,9 @@
           <th scope="col"><%= t("activerecord.attributes.financial_operation.label") %></th>
           <th scope="col"><%= t("activerecord.attributes.financial_operation.amount") %></th>
           <th scope="col"><%= t("activerecord.attributes.financial_operation.date") %></th>
+          <th scope="col"><%= t("activerecord.attributes.financial_operation.property") %></th>
+          <th scope="col"><%= t("activerecord.attributes.financial_operation.associate") %></th>
+          <th scope="col"><%= t("activerecord.attributes.financial_operation.tenant") %></th>
         </tr>
       </thead>
       <tbody>
@@ -89,6 +92,9 @@
               <%= number_to_currency(financial_operation.amount) %>
             </td>
             <td><%= l(financial_operation.date, format: :medium) if financial_operation.date %></td>
+            <td><%= financial_operation.property&.description %></td>
+            <td><%= financial_operation.associate&.first_name %></td>
+            <td><%= financial_operation.tenant&.first_name %></td>
           </tr>
         <% end %>
       </tbody>
