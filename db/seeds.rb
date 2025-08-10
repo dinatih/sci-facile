@@ -8,13 +8,7 @@ if Rails.env.production?
 end
 
 # Clear existing data
-AdminUser.destroy_all
-Company.destroy_all
-Associate.destroy_all
-Property.destroy_all
-Tenant.destroy_all
-FinancialOperation.destroy_all
-GeneralMeeting.destroy_all
+DatabaseCleaner.clean_with :truncation
 
 FactoryBot.create(:admin_user, email: 'admin@sci-facile.com')
 
@@ -22,20 +16,20 @@ FactoryBot.create(:admin_user, email: 'admin@sci-facile.com')
 5.times do
   company = FactoryBot.create(:company, :complete)
 
-    # Add properties with tenants
-    2.times do
-      FactoryBot.create(:property, :apartment, :with_tenant, company: company)
-    end
+  # Add properties with tenants
+  2.times do
+    FactoryBot.create(:property, :apartment, :with_tenant, company: company)
+  end
 
-    # Add financial operations
-    3.times do
-      FactoryBot.create(:financial_operation, :rental_income, company: company)
-      FactoryBot.create(:financial_operation, :expense, company: company)
-    end
+  # Add financial operations
+  3.times do
+    FactoryBot.create(:financial_operation, :rental_income, company: company)
+    FactoryBot.create(:financial_operation, :expense, company: company)
+  end
 
-    # Add general meetings
-    FactoryBot.create(:general_meeting, :annual, company: company)
-    FactoryBot.create(:general_meeting, :extraordinary, company: company)
+  # # Add general meetings
+  FactoryBot.create(:general_meeting, :annual, company: company)
+  FactoryBot.create(:general_meeting, :extraordinary, company: company)
 end
 
 puts "Seed completed: #{AdminUser.count} admin users,#{Company.count} companies, #{Associate.count} associates, #{Property.count} properties, #{Tenant.count} tenants, #{FinancialOperation.count} financial operations, #{GeneralMeeting.count} general meetings created."
