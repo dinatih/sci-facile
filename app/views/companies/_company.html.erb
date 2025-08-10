@@ -3,6 +3,8 @@
     <i class="fas fa-building-columns text-primary"></i>
     <%= t("activerecord.attributes.company.name") %>:
     <strong><%= company.name %></strong>
+    <%= link_to "<<", company_path(company.id - 1), class: "btn btn-outline-secondary" %>
+    <%= link_to ">>", company_path(company.id + 1), class: "btn btn-outline-secondary" %>
   </h2>
   <hr/>
   <h3><i class="fas fa-user-group text-primary"></i> <%= t("activerecord.models.associate.other") %>:</h3>
