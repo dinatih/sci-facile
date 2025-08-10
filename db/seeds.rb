@@ -26,6 +26,12 @@ FactoryBot.create(:admin_user, email: 'admin@sci-facile.com')
     FactoryBot.create(:financial_operation, :rental_income, company: company)
     FactoryBot.create(:financial_operation, :expense, company: company)
   end
+  FactoryBot.create(:financial_operation, :contribution, company: company)
+  FactoryBot.create(:financial_operation, :reimbursement, company: company)
+  FactoryBot.create(:financial_operation, :maintenance, company: company)
+  FactoryBot.create(:financial_operation, :large_amount, company: company)
+  FactoryBot.create(:financial_operation, :recent, company: company)
+  FactoryBot.create(:financial_operation, :last_year, company: company)
 
   # # Add general meetings
   FactoryBot.create(:general_meeting, :annual, company: company)
