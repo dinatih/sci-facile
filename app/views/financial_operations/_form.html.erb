@@ -11,16 +11,16 @@
   <% end %>
 
   <div class="col-12">
-    <%= form.label :property_id, class: "form-label" %>
-    <%= form.text_field :property_id, class: "form-control" %>
+    <%= form.label :property, class: "form-label" %>
+    <%= form.collection_select :property, @company.properties, :id, :address, { include_blank: true }, { class: "form-select" } %>
   </div>
   <div class="col-12">
-    <%= form.label :tenant_id, class: "form-label" %>
-    <%= form.text_field :tenant_id, class: "form-control" %>
+    <%= form.label :tenant, class: "form-label" %>
+    <%= form.collection_select :tenant, @company.tenants, :id, :email, { include_blank: true }, { class: "form-select" } %>
   </div>
   <div class="col-12">
-    <%= form.label :associate_id, class: "form-label" %>
-    <%= form.text_field :associate_id, class: "form-control" %>
+    <%= form.label :associate, class: "form-label" %>
+    <%= form.collection_select :associate, @company.associates, :id, :email, { include_blank: true }, { class: "form-select" } %>
   </div>
   <div class="col-12">
     <%= form.label :category, class: "form-label" %>
