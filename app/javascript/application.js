@@ -3,6 +3,8 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
 
+import "./chart/finance_chart"
+
 // Import FontAwesome core
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
 

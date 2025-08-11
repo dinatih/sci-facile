@@ -8,6 +8,38 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1 or /companies/1.json
   def show
+    period = params[:period] || "year"
+    start_date, end_date = period_dates(period)
+
+    ops = @company.financial_operations.where(date: start_date..end_date)
+
+    @total_income = ops.where(category: "recette").sum(:amount)
+    @total_expense = ops.where(category: "dépense").sum(:amount)
+    @current_balance = @total_income - @total_expense
+
+    # Graph: income vs expenses by month
+    # @monthly_data = ops.group_by_month(:date, format: "%b %Y").sum(:amount)
+    @monthly_income  = ops.where(category: "recette").group_by_month(:date, format: "%b %Y").sum(:amount)
+    @monthly_expense = ops.where(category: "dépense").group_by_month(:date, format: "%b %Y").sum(:amount)
+
+    # Top properties income
+    @top_properties_income = @company.properties.joins(:financial_operations)
+                                     .where(financial_operations: { category: "recette", date: start_date..end_date })
+                                     .group(:id, :address)
+                                     .sum("financial_operations.amount")
+                                     .sort_by { |_k, v| -v }
+                                     .first(5)
+  end
+
+  def period_dates(period)
+    case period
+    when "month"
+      [ Date.today.beginning_of_month, Date.today.end_of_month ]
+    when "quarter"
+      [ Date.today.beginning_of_quarter, Date.today.end_of_quarter ]
+    else # year
+      [ Date.today.beginning_of_year, Date.today.end_of_year ]
+    end
   end
 
   # GET /companies/new

@@ -1,0 +1,75 @@
+  <h1>Tableau de bord financier</h1>
+  <hr/>
+  
+  <!-- Filtres -->
+  <div class="mb-3">
+    <%= link_to "Année", company_path(period: 'year'), class: "btn #{params[:period] == 'year' || params[:period].blank? ? 'btn-primary' : 'btn-secondary'}" %>
+    <%= link_to "Trimestre", company_path(period: 'quarter'), class: "btn #{params[:period] == 'quarter' ? 'btn-primary' : 'btn-secondary'}" %>
+    <%= link_to "Mois", company_path(period: 'month'), class: "btn #{params[:period] == 'month' ? 'btn-primary' : 'btn-secondary'}" %>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card bg-success text-white">
+        <div class="card-body">
+          <h5>Recettes totales</h5>
+          <p><%= number_to_currency(@total_income) %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card bg-danger text-white">
+        <div class="card-body">
+          <h5>Dépenses totales</h5>
+          <p><%= number_to_currency(@total_expense) %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card bg-info text-white">
+        <div class="card-body">
+          <h5>Solde actuel</h5>
+          <p><%= number_to_currency(@current_balance) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Graph -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5>Recettes vs Dépenses</h5>
+      <canvas id="financeChart" width="800" height="300"
+        data-labels="<%= @monthly_income.keys.to_json %>"
+        data-income="<%= @monthly_income.values.to_json %>"
+        data-expense="<%= @monthly_expense.values.to_json %>"
+        style="max-height: 200px; width: 100%;">
+      </canvas>
+    </div>
+  </div>
+  
+  <!-- Top Properties -->
+  <div class="card">
+    <div class="card-body">
+      <h5>Top Propriétés par Recettes</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Propriété</th>
+            <th>Recettes totales</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @top_properties_income.each do |(id, address), amount| %>
+            <tr>
+              <td><%= link_to address, company_property_path(company, id) %></td>
+              <td><%= number_to_currency(amount) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr/>

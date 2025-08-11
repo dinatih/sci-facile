@@ -44,7 +44,7 @@ Développer une application web permettant de gérer facilement une SCI :
 
 ### 2️⃣ Gestion financière
 
-* Enregistrement des revenus (loyers, remboursements, etc.)
+* Enregistrement des recettes (loyers, remboursements, etc.)
 * Enregistrement des dépenses (charges, travaux, impôts, etc.)
 * Comptes courants d’associés (avances, retraits)
 * Visualisation simplifiée des bilans par exercice
