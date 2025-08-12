@@ -1,11 +1,12 @@
+<section>
   <h1>Tableau de bord financier</h1>
   <hr/>
   
   <!-- Filtres -->
   <div class="mb-3">
-    <%= link_to "Année", company_path(period: 'year'), class: "btn #{params[:period] == 'year' || params[:period].blank? ? 'btn-primary' : 'btn-secondary'}" %>
-    <%= link_to "Trimestre", company_path(period: 'quarter'), class: "btn #{params[:period] == 'quarter' ? 'btn-primary' : 'btn-secondary'}" %>
-    <%= link_to "Mois", company_path(period: 'month'), class: "btn #{params[:period] == 'month' ? 'btn-primary' : 'btn-secondary'}" %>
+    <%= link_to "Année", company_path(company, period: 'year'), class: "btn #{params[:period] == 'year' || params[:period].blank? ? 'btn-primary' : 'btn-secondary'}" %>
+    <%= link_to "Trimestre", company_path(company, period: 'quarter'), class: "btn #{params[:period] == 'quarter' ? 'btn-primary' : 'btn-secondary'}" %>
+    <%= link_to "Mois", company_path(company, period: 'month'), class: "btn #{params[:period] == 'month' ? 'btn-primary' : 'btn-secondary'}" %>
   </div>
 
   <div class="row mb-4">
@@ -73,3 +74,4 @@
     </div>
   </div>
   <hr/>
+</section>
