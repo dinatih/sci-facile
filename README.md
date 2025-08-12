@@ -357,6 +357,43 @@ Si tu veux, je peux te faire un **exemple de modèle de procès-verbal** en angl
 ---
 ---
 
+Excellente question ! Voici les différences entre ces 4 catégories d'opérations financières dans une SCI :
+
+## **RECETTE** 💰
+- **Définition** : Argent qui ENTRE dans la SCI en échange d'un service/bien
+- **Exemples** : Loyers, revenus locatifs
+- **Impact** : Augmente les fonds de la SCI
+- **Dans vos données** : Les loyers de Philothée (663€, 1397€, 1478€)
+
+## **DÉPENSE** 💸
+- **Définition** : Argent qui SORT de la SCI pour faire fonctionner l'activité
+- **Exemples** : Charges, assurance, taxes, travaux, entretien
+- **Impact** : Diminue les fonds de la SCI
+- **Dans vos données** : Charges (514€), Assurance (446€), Taxe (435€), Travaux (2982€)
+
+## **APPORT** 📥
+- **Définition** : Argent apporté par les ASSOCIÉS à la SCI (pas un revenu d'activité)
+- **Types** : 
+  - Apport initial (capital)
+  - Apport en compte courant (prêt des associés à la SCI)
+- **Impact** : Augmente les fonds de la SCI + crée une dette envers l'associé
+- **Dans vos données** : Herluin a apporté 7125€ en compte courant
+
+## **REMBOURSEMENT** 📤
+- **Définition** : La SCI rembourse de l'argent aux associés (leurs comptes courants)
+- **Nature** : Pas une dépense d'activité, mais un remboursement de dette
+- **Impact** : Diminue les fonds de la SCI + diminue la dette envers l'associé
+- **Dans vos données** : Remboursement à Aurélie (3667€) et opération remboursement (1936€)
+
+## **Résumé pratique :**
+- **Recettes** = La SCI gagne de l'argent par son activité
+- **Dépenses** = La SCI dépense pour son activité  
+- **Apports** = Les associés prêtent à la SCI
+- **Remboursements** = La SCI rembourse ses associés
+
+**Impact sur le bilan :** Recettes et apports augmentent la trésorerie, dépenses et remboursements la diminuent, mais seules les recettes et dépenses affectent le résultat de la SCI !
+
+
 # README
 
 This README would normally document whatever steps are necessary to get the
