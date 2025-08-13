@@ -1,62 +1,113 @@
-<%= form_with(model: [@company, financial_operation], html: { class: "row g-3" }) do |form| %>
-  <% if financial_operation.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= t("helpers.errors_prohibited", count: financial_operation.errors.count, model: t("activerecord.models.financial_operation.one")) %></h2>
-      <ul>
-        <% financial_operation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="card shadow-sm">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <div>
+      <i class="fas fa-file-invoice-dollar text-primary"></i>
+      <%= t("activerecord.models.financial_operation.one", default: "Opération financière") %>
     </div>
-  <% end %>
+  </div>
 
-  <div class="col-md-6">
-    <%= form.label :category, t('activerecord.attributes.financial_operation.category'), class: "form-label" %>
-    <%= form.select :category,
-          options_for_select(FinancialOperation.categories.keys.map { |k| [t("activerecord.attributes.financial_operation.categories.#{k}"), k] }, financial_operation.category),
-          { include_blank: false },
-          { class: "form-select" } %>
+  <div class="card-body">
+    <%= form_with(model: [@company, financial_operation], html: { class: "row g-4", data: { controller: "operation-type", operation_type_options_value: {
+      income: %w[rent other],
+      expense: %w[charges insurance tax maintenance other],
+      contribution: %w[initial_contribution current_account_contribution other],
+      refund: %w[current_account_refund other]
+    }.to_json } }) do |form| %>
+
+      <% if financial_operation.errors.any? %>
+        <div class="col-12">
+          <div class="alert alert-danger">
+            <h2 class="h6 mb-2"><%= t("helpers.errors_prohibited", count: financial_operation.errors.count, model: t("activerecord.models.financial_operation.one")) %></h2>
+            <ul class="mb-0">
+              <% financial_operation.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Type d'opération -->
+      <div class="col-12">
+        <h6 class="text-uppercase text-muted mb-2"><i class="fas fa-filter me-1"></i> Type</h6>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <%= form.label :category, t('activerecord.attributes.financial_operation.category'), class: "form-label" %>
+            <%= form.select :category,
+                  options_for_select(FinancialOperation.categories.keys.map { |k| [t("activerecord.attributes.financial_operation.categories.#{k}"), k] }, financial_operation.category),
+                  { include_blank: false },
+                  { class: "form-select", data: { operation_type_target: "categorySelect", action: "change->operation-type#update" } } %>
+          </div>
+          <div class="col-md-6">
+            <%= form.label :operation_type, t('activerecord.attributes.financial_operation.operation_type'), class: "form-label" %>
+            <%= form.select :operation_type,
+                  options_for_select(FinancialOperation.operation_types.keys.map { |k| [t("activerecord.attributes.financial_operation.operation_types.#{k}"), k] }, financial_operation.operation_type),
+                  { include_blank: true },
+                  { class: "form-select", data: { operation_type_target: "typeSelect" } } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Détails -->
+      <div class="col-12">
+        <h6 class="text-uppercase text-muted mb-2"><i class="fas fa-info-circle me-1"></i> Détails</h6>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <%= form.label :label, class: "form-label" %>
+            <%= form.text_field :label, class: "form-control", placeholder: "Intitulé (ex: Loyer juin 2025)" %>
+          </div>
+          <div class="col-md-3">
+            <%= form.label :amount, class: "form-label" %>
+            <div class="input-group">
+              <span class="input-group-text">€</span>
+              <%= form.number_field :amount, step: "0.01", min: 0, class: "form-control", placeholder: "0,00" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <%= form.label :operation_date, class: "form-label" %>
+            <%= form.date_field :operation_date, class: "form-control" %>
+            <div class="form-text">Format navigateur (AAAA-MM-JJ)</div>
+          </div>
+          <div class="col-12">
+            <%= form.label :description, class: "form-label" %>
+            <%= form.text_area :description, rows: 3, class: "form-control", placeholder: "Notes, détails, références externes…" %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liens (associations) -->
+      <div class="col-12">
+        <h6 class="text-uppercase text-muted mb-2"><i class="fas fa-link me-1"></i> Liens</h6>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <%= form.label :property, class: "form-label" %>
+            <%= form.collection_select :property_id, @company.properties, :id, :address, { include_blank: true }, { class: "form-select" } %>
+          </div>
+          <div class="col-md-4">
+            <%= form.label :tenant, class: "form-label" %>
+            <%= form.collection_select :tenant_id, @company.tenants, :id, :email, { include_blank: true }, { class: "form-select" } %>
+          </div>
+          <div class="col-md-4">
+            <%= form.label :associate, class: "form-label" %>
+            <%= form.collection_select :associate_id, @company.associates, :id, :email, { include_blank: true }, { class: "form-select" } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Référence + actions -->
+      <div class="col-12">
+        <h6 class="text-uppercase text-muted mb-2"><i class="fas fa-hashtag me-1"></i> Référence</h6>
+        <div class="row g-3 align-items-end">
+          <div class="col-md-6">
+            <%= form.label :reference_number, class: "form-label" %>
+            <%= form.text_field :reference_number, class: "form-control", placeholder: "Référence interne (optionnel)" %>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end">
+            <%= form.submit class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
   </div>
-  <div class="col-md-6">
-    <%= form.label :operation_type, t('activerecord.attributes.financial_operation.operation_type'), class: "form-label" %>
-    <%= form.select :operation_type,
-          options_for_select(FinancialOperation.operation_types.keys.map { |k| [t("activerecord.attributes.financial_operation.operation_types.#{k}"), k] }, financial_operation.operation_type),
-          { include_blank: true },
-          { class: "form-select" } %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :property, class: "form-label" %>
-    <%= form.collection_select :property_id, @company.properties, :id, :address, { include_blank: true }, { class: "form-select" } %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :tenant, class: "form-label" %>
-    <%= form.collection_select :tenant_id, @company.tenants, :id, :email, { include_blank: true }, { class: "form-select" } %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :associate, class: "form-label" %>
-    <%= form.collection_select :associate_id, @company.associates, :id, :email, { include_blank: true }, { class: "form-select" } %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :label, class: "form-label" %>
-    <%= form.text_field :label, class: "form-control" %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :amount, class: "form-label" %>
-    <%= form.number_field :amount, step: "0.01", min: 0, class: "form-control" %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :operation_date, t('activerecord.attributes.financial_operation.operation_date'), class: "form-label" %>
-    <%= form.date_field :operation_date, class: "form-control" %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :description, t('activerecord.attributes.financial_operation.description', default: 'Description'), class: "form-label" %>
-    <%= form.text_area :description, rows: 3, class: "form-control" %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :reference_number, t('activerecord.attributes.financial_operation.reference_number', default: 'Référence'), class: "form-label" %>
-    <%= form.text_field :reference_number, class: "form-control" %>
-  </div>
-  <div class="col-12">
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>
