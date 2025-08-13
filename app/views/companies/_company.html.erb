@@ -1,165 +1,224 @@
-<div id="<%= dom_id company %>">
+<div id="<%= dom_id company %>" class="container my-4">
   <%= render "financial_dashboard", company: company %>
-  <h2>
-    <i class="fas fa-building-columns text-primary"></i>
-    <%= t("activerecord.attributes.company.name") %>:
-    <strong><%= company.name %></strong>
-    <%= link_to "<<", company_path(company.id - 1), class: "btn btn-outline-secondary" %>
-    <%= link_to ">>", company_path(company.id + 1), class: "btn btn-outline-secondary" %>
-  </h2>
-  <hr/>
-  <h3><i class="fas fa-user-group text-primary"></i> <%= t("activerecord.models.associate.other") %>:</h3>
-  <div id="associates">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col"><%= t("activerecord.attributes.associate.first_name") %></th>
-          <th scope="col"><%= t("activerecord.attributes.associate.last_name") %></th>
-          <th scope="col"><%= t("activerecord.attributes.associate.email") %></th>
-          <th scope="col"><%= t("activerecord.attributes.associate.shares_count") %></th>
-          <th scope="col"><%= t("activerecord.attributes.associate.initial_contribution") %></th>
-          <th scope="col"><%= t("activerecord.attributes.associate.current_account_balance") %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% company.associates.each_with_index do |associate, index| %>
-          <tr>
-            <th scope="row"><%= link_to index + 1, company_associate_path(company, associate) %></th>
-            <td><%= associate.first_name %></td>
-            <td><%= associate.last_name %></td>
-            <td><%= associate.email %></td>
-            <td><%= number_with_delimiter(associate.shares_count) %></td>
-            <td><%= number_to_currency(associate.initial_contribution) %></td>
-            <td class="<%= associate.current_account_balance < 0 ? 'text-danger' : associate.current_account_balance > 0 ? 'text-success' : '' %>">
-              <%= number_to_currency(associate.current_account_balance) %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">
+      <i class="fas fa-building-columns text-primary me-2"></i>
+      <%= company.name %>
+    </h3>
+    <div class="btn-group" role="group" aria-label="Navigation">
+      <%= link_to fa_icon("angle-left"), company_path(company.id - 1), class: "btn btn-outline-secondary" rescue link_to("<<", company_path(company.id - 1), class: "btn btn-outline-secondary") %>
+      <%= link_to fa_icon("angle-right"), company_path(company.id + 1), class: "btn btn-outline-secondary" rescue link_to(">>", company_path(company.id + 1), class: "btn btn-outline-secondary") %>
+    </div>
   </div>
-  <%= link_to t("helpers.new", model: t("activerecord.models.associate.one")), new_company_associate_path(company), class: "btn btn-outline-primary" %>
-  <hr/>
-  <h3><i class="fas fa-building text-primary"></i> <%= t("activerecord.models.property.other") %>:</h3>
-  <div id="properties">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col"><%= t("activerecord.attributes.property.address") %></th>
-          <th scope="col"><%= t("activerecord.attributes.property.description") %></th>
-          <th scope="col"><%= t("activerecord.attributes.property.acquisition_date") %></th>
-          <th scope="col"><%= t("activerecord.attributes.property.acquisition_price") %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% company.properties.each_with_index do |property, index| %>
-          <tr>
-            <th scope="row"><%= link_to index + 1, company_property_path(company, property) %></th>
-            <td><%= property.address %></td>
-            <td><%= property.description %></td>
-            <td><%= l(property.acquisition_date, format: :medium) if property.acquisition_date %></td>
-            <td><%= number_to_currency(property.acquisition_price) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+
+  <!-- Associates -->
+  <div class="card mb-4" id="associates">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div>
+        <i class="fas fa-user-group text-primary me-2"></i>
+        <%= t("activerecord.models.associate.other") %>
+        <span class="badge bg-secondary ms-2"><%= company.associates.size %></span>
+      </div>
+      <%= link_to t("helpers.new", model: t("activerecord.models.associate.one")), new_company_associate_path(company), class: "btn btn-sm btn-primary" %>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"><%= t("activerecord.attributes.associate.first_name") %></th>
+              <th scope="col"><%= t("activerecord.attributes.associate.last_name") %></th>
+              <th scope="col"><%= t("activerecord.attributes.associate.email") %></th>
+              <th scope="col" class="text-end"><%= t("activerecord.attributes.associate.shares_count") %></th>
+              <th scope="col" class="text-end"><%= t("activerecord.attributes.associate.initial_contribution") %></th>
+              <th scope="col" class="text-end"><%= t("activerecord.attributes.associate.current_account_balance") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% company.associates.each_with_index do |associate, index| %>
+              <tr>
+                <th scope="row"><%= link_to index + 1, company_associate_path(company, associate) %></th>
+                <td><%= associate.first_name %></td>
+                <td><%= associate.last_name %></td>
+                <td><%= mail_to associate.email, associate.email if associate.email.present? %></td>
+                <td class="text-end"><%= number_with_delimiter(associate.shares_count) %></td>
+                <td class="text-end"><%= number_to_currency(associate.initial_contribution) %></td>
+                <td class="text-end <%= associate.current_account_balance < 0 ? 'text-danger' : associate.current_account_balance > 0 ? 'text-success' : '' %>">
+                  <%= number_to_currency(associate.current_account_balance) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <%= link_to t("helpers.new", model: t("activerecord.models.property.one")), new_company_property_path(company), class: "btn btn-outline-primary" %>
-  <hr/>
-  <h3><i class="fas fa-file-invoice-dollar text-primary"></i> <%= t("activerecord.models.financial_operation.other") %>:</h3>
-  <div id="financial_operations" class="table-responsive" style="height: 400px; overflow-y: auto;">
-    <table class="table table-striped">
-      <thead class="table-primary sticky-top">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.category") %></th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.operation_type") %></th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.label") %></th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.amount") %></th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.operation_date") %></th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.property") %></th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.associate") %></th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.tenant") %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% company.financial_operations.each_with_index do |financial_operation, index| %>
-          <tr>
-            <th scope="row"><%= link_to index + 1, company_financial_operation_path(company, financial_operation) %></th>
-            <td><%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}") %></td>
-            <td><%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}") %></td>
-            <td><%= financial_operation.label %></td>
-            <td class="<%= financial_operation.amount < 0 ? 'text-danger' : financial_operation.amount > 0 ? 'text-success' : '' %>">
-              <%= number_to_currency(financial_operation.amount) %>
-            </td>
-            <td><%= l(financial_operation.operation_date, format: :medium) if financial_operation.operation_date %></td>
-            <td><%= financial_operation.property&.description %></td>
-            <td><%= financial_operation.associate&.first_name %></td>
-            <td><%= financial_operation.tenant&.first_name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+
+  <!-- Properties -->
+  <div class="card mb-4" id="properties">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div>
+        <i class="fas fa-building text-primary me-2"></i>
+        <%= t("activerecord.models.property.other") %>
+        <span class="badge bg-secondary ms-2"><%= company.properties.size %></span>
+      </div>
+      <%= link_to t("helpers.new", model: t("activerecord.models.property.one")), new_company_property_path(company), class: "btn btn-sm btn-primary" %>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"><%= t("activerecord.attributes.property.address") %></th>
+              <th scope="col"><%= t("activerecord.attributes.property.description") %></th>
+              <th scope="col"><%= t("activerecord.attributes.property.acquisition_date") %></th>
+              <th scope="col" class="text-end"><%= t("activerecord.attributes.property.acquisition_price") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% company.properties.each_with_index do |property, index| %>
+              <tr>
+                <th scope="row"><%= link_to index + 1, company_property_path(company, property) %></th>
+                <td><%= property.address %></td>
+                <td class="text-truncate" style="max-width: 280px;"><%= property.description %></td>
+                <td><%= l(property.acquisition_date, format: :medium) if property.acquisition_date %></td>
+                <td class="text-end"><%= number_to_currency(property.acquisition_price) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <%= link_to t("helpers.new", model: t("activerecord.models.financial_operation.one")), new_company_financial_operation_path(company), class: "btn btn-outline-primary" %>
-  <hr/>
-  <h3><i class="fas fa-key text-primary"></i> <%= t("activerecord.models.tenant.other") %>:</h3>
-  <div id="tenants">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col"><%= t("activerecord.attributes.tenant.first_name") %></th>
-          <th scope="col"><%= t("activerecord.attributes.tenant.last_name") %></th>
-          <th scope="col"><%= t("activerecord.attributes.tenant.email") %></th>
-          <th scope="col"><%= t("activerecord.attributes.tenant.rent_amount") %></th>
-          <th scope="col"><%= t("activerecord.attributes.tenant.charges_amount") %></th>
-          <th scope="col"><%= t("activerecord.attributes.tenant.lease_start_date") %></th>
-          <th scope="col"><%= t("activerecord.attributes.tenant.lease_end_date") %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% company.tenants.each_with_index do |tenant, index| %>
-          <tr>
-            <th scope="row"><%= link_to index + 1, company_tenant_path(company, tenant) %></th>
-            <td><%= tenant.first_name %></td>
-            <td><%= tenant.last_name %></td>
-            <td><%= tenant.email %></td>
-            <td><%= number_to_currency(tenant.rent_amount) %></td>
-            <td><%= number_to_currency(tenant.charges_amount) %></td>
-            <td><%= l(tenant.lease_start_date, format: :medium) if tenant.lease_start_date %></td>
-            <td><%= l(tenant.lease_end_date, format: :medium) if tenant.lease_end_date %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+
+  <!-- Financial operations -->
+  <div class="card mb-4" id="financial_operations">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div>
+        <i class="fas fa-file-invoice-dollar text-primary me-2"></i>
+        <%= t("activerecord.models.financial_operation.other") %>
+        <span class="badge bg-secondary ms-2"><%= company.financial_operations.size %></span>
+      </div>
+      <%= link_to t("helpers.new", model: t("activerecord.models.financial_operation.one")), new_company_financial_operation_path(company), class: "btn btn-sm btn-primary" %>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+        <table class="table table-sm align-middle mb-0">
+          <thead class="table-light sticky-top">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"><%= t("activerecord.attributes.financial_operation.category") %></th>
+              <th scope="col"><%= t("activerecord.attributes.financial_operation.operation_type") %></th>
+              <th scope="col"><%= t("activerecord.attributes.financial_operation.label") %></th>
+              <th scope="col" class="text-end"><%= t("activerecord.attributes.financial_operation.amount") %></th>
+              <th scope="col"><%= t("activerecord.attributes.financial_operation.operation_date") %></th>
+              <th scope="col"><%= t("activerecord.attributes.financial_operation.property") %></th>
+              <th scope="col"><%= t("activerecord.attributes.financial_operation.associate") %></th>
+              <th scope="col"><%= t("activerecord.attributes.financial_operation.tenant") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% company.financial_operations.each_with_index do |financial_operation, index| %>
+              <tr>
+                <th scope="row"><%= link_to index + 1, company_financial_operation_path(company, financial_operation) %></th>
+                <td><%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}") %></td>
+                <td><%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}") %></td>
+                <td class="text-truncate" style="max-width: 240px;"><%= financial_operation.label %></td>
+                <td class="text-end <%= financial_operation.amount < 0 ? 'text-danger' : financial_operation.amount > 0 ? 'text-success' : '' %>">
+                  <%= number_to_currency(financial_operation.amount) %>
+                </td>
+                <td><%= l(financial_operation.operation_date, format: :medium) if financial_operation.operation_date %></td>
+                <td><%= financial_operation.property&.description %></td>
+                <td><%= financial_operation.associate&.first_name %></td>
+                <td><%= financial_operation.tenant&.first_name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <%= link_to t("helpers.new", model: t("activerecord.models.tenant.one")), new_company_tenant_path(company), class: "btn btn-outline-primary" %>
-  <hr/>
-  <h3><i class="fas fa-pen text-primary"> </i><%= t("activerecord.models.general_meeting.other") %>:</h3>
-  <div id="general_meetings">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col"><%= t("activerecord.attributes.general_meeting.date") %></th>
-          <th scope="col"><%= t("activerecord.attributes.general_meeting.title") %></th>
-          <th scope="col"><%= t("activerecord.attributes.general_meeting.minutes_text") %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% company.general_meetings.each_with_index do |general_meeting, index| %>
-          <tr>
-            <th scope="row"><%= link_to index + 1, company_general_meeting_path(company, general_meeting) %></th>
-            <td><%= l(general_meeting.date, format: :medium) if general_meeting.date %></td>
-            <td><%= general_meeting.title %></td>
-            <td><%= truncate(general_meeting.minutes_text, length: 100) if general_meeting.minutes_text %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+
+  <!-- Tenants -->
+  <div class="card mb-4" id="tenants">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div>
+        <i class="fas fa-key text-primary me-2"></i>
+        <%= t("activerecord.models.tenant.other") %>
+        <span class="badge bg-secondary ms-2"><%= company.tenants.size %></span>
+      </div>
+      <%= link_to t("helpers.new", model: t("activerecord.models.tenant.one")), new_company_tenant_path(company), class: "btn btn-sm btn-primary" %>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"><%= t("activerecord.attributes.tenant.first_name") %></th>
+              <th scope="col"><%= t("activerecord.attributes.tenant.last_name") %></th>
+              <th scope="col"><%= t("activerecord.attributes.tenant.email") %></th>
+              <th scope="col" class="text-end"><%= t("activerecord.attributes.tenant.rent_amount") %></th>
+              <th scope="col" class="text-end"><%= t("activerecord.attributes.tenant.charges_amount") %></th>
+              <th scope="col"><%= t("activerecord.attributes.tenant.lease_start_date") %></th>
+              <th scope="col"><%= t("activerecord.attributes.tenant.lease_end_date") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% company.tenants.each_with_index do |tenant, index| %>
+              <tr>
+                <th scope="row"><%= link_to index + 1, company_tenant_path(company, tenant) %></th>
+                <td><%= tenant.first_name %></td>
+                <td><%= tenant.last_name %></td>
+                <td><%= mail_to tenant.email, tenant.email if tenant.email.present? %></td>
+                <td class="text-end"><%= number_to_currency(tenant.rent_amount) %></td>
+                <td class="text-end"><%= number_to_currency(tenant.charges_amount) %></td>
+                <td><%= l(tenant.lease_start_date, format: :medium) if tenant.lease_start_date %></td>
+                <td><%= l(tenant.lease_end_date, format: :medium) if tenant.lease_end_date %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <%= link_to t("helpers.new", model: t("activerecord.models.general_meeting.one")), new_company_general_meeting_path(company), class: "btn btn-outline-primary" %>
+
+  <!-- General meetings -->
+  <div class="card mb-4" id="general_meetings">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div>
+        <i class="fas fa-pen text-primary me-2"></i>
+        <%= t("activerecord.models.general_meeting.other") %>
+        <span class="badge bg-secondary ms-2"><%= company.general_meetings.size %></span>
+      </div>
+      <%= link_to t("helpers.new", model: t("activerecord.models.general_meeting.one")), new_company_general_meeting_path(company), class: "btn btn-sm btn-primary" %>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"><%= t("activerecord.attributes.general_meeting.date") %></th>
+              <th scope="col"><%= t("activerecord.attributes.general_meeting.title") %></th>
+              <th scope="col"><%= t("activerecord.attributes.general_meeting.minutes_text") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% company.general_meetings.each_with_index do |general_meeting, index| %>
+              <tr>
+                <th scope="row"><%= link_to index + 1, company_general_meeting_path(company, general_meeting) %></th>
+                <td><%= l(general_meeting.date, format: :medium) if general_meeting.date %></td>
+                <td><%= general_meeting.title %></td>
+                <td class="text-truncate" style="max-width: 280px;"><%= general_meeting.minutes_text %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
