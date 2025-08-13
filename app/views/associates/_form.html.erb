@@ -10,39 +10,45 @@
     </div>
   <% end %>
 
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :first_name, class: "form-label" %>
-    <%= form.text_field :first_name, class: "form-control" %>
+    <%= form.text_field :first_name, class: "form-control", placeholder: t("helpers.placeholders.first_name", default: "Prénom") %>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :last_name, class: "form-label" %>
-    <%= form.text_field :last_name, class: "form-control" %>
+    <%= form.text_field :last_name, class: "form-control", placeholder: t("helpers.placeholders.last_name", default: "Nom") %>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :email, class: "form-label" %>
-    <%= form.text_field :email, class: "form-control" %>
+    <%= form.email_field :email, class: "form-control", placeholder: "email@example.com" %>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :shares_count, class: "form-label" %>
-    <%= form.number_field :shares_count, class: "form-control" %>
+    <%= form.number_field :shares_count, class: "form-control", min: 0, step: 1 %>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :initial_contribution, class: "form-label" %>
-    <%= form.text_field :initial_contribution, class: "form-control" %>
+    <div class="input-group">
+      <span class="input-group-text">€</span>
+      <%= form.number_field :initial_contribution, class: "form-control", step: "0.01" %>
+    </div>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :current_account_balance, class: "form-label" %>
-    <%= form.text_field :current_account_balance, class: "form-control" %>
+    <div class="input-group">
+      <span class="input-group-text">€</span>
+      <%= form.number_field :current_account_balance, class: "form-control", step: "0.01" %>
+    </div>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :password, class: "form-label" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+      <div class="form-text"><%= t("devise.shared.minimum_password_length.other", count: @minimum_password_length, default: "#{@minimum_password_length} caractères minimum") %></div>
+    <% end %>
     <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
   </div>
-  <div class="col-12">
-    <%= form.label :password_confirmation, class: "form-label" %><br />
+  <div class="col-md-6">
+    <%= form.label :password_confirmation, class: "form-label" %>
     <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
   </div>
   <div class="col-12">

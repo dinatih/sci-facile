@@ -1,26 +1,35 @@
-<div id="<%= dom_id associate %>">
-  <p>
-    <strong><%= t("activerecord.attributes.associate.first_name") %>:</strong>
-    <%= associate.first_name %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.associate.last_name") %>:</strong>
-    <%= associate.last_name %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.associate.email") %>:</strong>
-    <%= associate.email %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.associate.shares_count") %>:</strong>
-    <%= associate.shares_count %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.associate.initial_contribution") %>:</strong>
-    <%= associate.initial_contribution %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.associate.current_account_balance") %>:</strong>
-    <%= associate.current_account_balance %>
-  </p>
+<div id="<%= dom_id associate %>" class="card shadow-sm h-100">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="fw-semibold">
+      <i class="fas fa-user text-primary me-1"></i>
+      <%= [associate.first_name, associate.last_name].compact.join(" ").presence || t("activerecord.models.associate.one") %>
+    </div>
+    <% if associate.email.present? %>
+      <span class="badge bg-light">
+        <%= mail_to associate.email, associate.email %>
+      </span>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-12 col-md-4">
+        <div class="text-muted small"><%= t("activerecord.attributes.associate.shares_count") %></div>
+        <div class="fw-semibold"><%= associate.shares_count || 0 %></div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="text-muted small"><%= t("activerecord.attributes.associate.initial_contribution") %></div>
+        <div class="fw-semibold"><%= number_to_currency(associate.initial_contribution) if associate.initial_contribution.present? %></div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="text-muted small"><%= t("activerecord.attributes.associate.current_account_balance") %></div>
+        <div class="fw-semibold"><%= number_to_currency(associate.current_account_balance) if associate.current_account_balance.present? %></div>
+      </div>
+    </div>
+  </div>
+  <% if local_assigns[:show_actions] %>
+    <div class="card-footer d-flex gap-2">
+      <%= link_to t("helpers.show", model: t("activerecord.models.associate.one")), [associate.company, associate], class: "btn btn-outline-primary btn-sm" %>
+      <%= link_to t("helpers.edit", model: t("activerecord.models.associate.one")), edit_company_associate_path(associate.company, associate), class: "btn btn-outline-secondary btn-sm" %>
+    </div>
+  <% end %>
 </div>

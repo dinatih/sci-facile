@@ -1,14 +1,18 @@
 <% content_for :title, t("helpers.edit", model: t("activerecord.models.associate.one")) %>
 
-<h1 class="mb-4"><%= t("helpers.edit", model: t("activerecord.models.associate.one")) %></h1>
+<div class="container my-4">
+  <h4 class="mb-3">
+    <i class="fas fa-user-edit text-primary me-2"></i>
+    <%= t("helpers.edit", model: t("activerecord.models.associate.one")) %>
+  </h4>
 
-<div class="card mb-4">
-  <div class="card-body">
-    <%= render "form", associate: @associate %>
+  <div class="card">
+    <div class="card-body">
+      <%= render "form", associate: @associate %>
+    </div>
   </div>
-</div>
 
-<div class="mb-3">
-  <%= link_to t("helpers.show", model: t("activerecord.models.associate.one")), company_associate_path(@associate.company, @associate), class: "btn btn-outline-primary me-2" %>
-  <%= link_to t("helpers.back", model: t("activerecord.models.associate.other")), company_associates_path(@associate.company), class: "btn btn-outline-secondary" %>
+  <div class="mt-3 d-flex gap-2">
+    <%= link_to t("helpers.back", model: t("activerecord.models.associate.other")), company_associates_path(@associate.company), class: "btn btn-link" %>
+  </div>
 </div>
