@@ -1,28 +1,33 @@
-<%= form_with(model: [@company, general_meeting], html: { class: "row g-3" }) do |form| %>
+<%= form_with(model: [@company, general_meeting], html: { class: "row g-4" }) do |form| %>
   <% if general_meeting.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= t("helpers.errors_prohibited", count: general_meeting.errors.count, model: t("activerecord.models.general_meeting.one")) %></h2>
-      <ul>
-        <% general_meeting.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="col-12">
+      <div class="alert alert-danger">
+        <h2 class="h6 mb-2"><%= t("helpers.errors_prohibited", count: general_meeting.errors.count, model: t("activerecord.models.general_meeting.one")) %></h2>
+        <ul class="mb-0">
+          <% general_meeting.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="col-12">
-    <%= form.label :date, class: "form-label" %>
+  <div class="col-md-4">
+    <%= form.label :date, t("activerecord.attributes.general_meeting.date"), class: "form-label" %>
     <%= form.date_field :date, class: "form-control" %>
+    <div class="form-text">AAAA-MM-JJ</div>
   </div>
-  <div class="col-12">
-    <%= form.label :title, class: "form-label" %>
-    <%= form.text_field :title, class: "form-control" %>
+  <div class="col-md-8">
+    <%= form.label :title, t("activerecord.attributes.general_meeting.title"), class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "Titre de l'AG" %>
   </div>
+
   <div class="col-12">
-    <%= form.label :minutes_text, class: "form-label" %>
-    <%= form.textarea :minutes_text, class: "form-control" %>
+    <%= form.label :minutes_text, t("activerecord.attributes.general_meeting.minutes_text"), class: "form-label" %>
+    <%= form.text_area :minutes_text, rows: 8, class: "form-control", placeholder: "Procès-verbal de la réunion" %>
   </div>
-  <div class="col-12">
+
+  <div class="col-12 d-flex justify-content-end">
     <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

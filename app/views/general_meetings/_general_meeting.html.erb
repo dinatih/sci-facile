@@ -1,14 +1,20 @@
-<div id="<%= dom_id general_meeting %>">
-  <p>
-    <strong><%= t("activerecord.attributes.general_meeting.date") %>:</strong>
-    <%= general_meeting.date %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.general_meeting.title") %>:</strong>
-    <%= general_meeting.title %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.general_meeting.minutes_text") %>:</strong>
-    <%= general_meeting.minutes_text %>
-  </p>
+<div id="<%= dom_id general_meeting %>" class="card shadow-sm">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="fw-semibold">
+      <i class="fas fa-pen text-primary me-1"></i>
+      <%= t("activerecord.models.general_meeting.one") %>
+      #<%= general_meeting.id %>
+    </div>
+    <span class="badge bg-secondary">
+      <%= l(general_meeting.date, format: :long) if general_meeting.date %>
+    </span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title mb-3"><%= general_meeting.title.presence || t("activerecord.attributes.general_meeting.title") %></h5>
+    <% if general_meeting.minutes_text.present? %>
+      <div class="mb-0"><%= simple_format(general_meeting.minutes_text) %></div>
+    <% else %>
+      <p class="text-muted mb-0"><%= t("activerecord.attributes.general_meeting.minutes_text") %> —</p>
+    <% end %>
+  </div>
 </div>
