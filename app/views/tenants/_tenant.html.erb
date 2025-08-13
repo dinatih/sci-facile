@@ -1,34 +1,49 @@
-<div id="<%= dom_id tenant %>">
-  <p>
-    <strong><%= t("activerecord.attributes.tenant.property_id") %>:</strong>
-    <%= tenant.property_id %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.tenant.first_name") %>:</strong>
-    <%= tenant.first_name %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.tenant.last_name") %>:</strong>
-    <%= tenant.last_name %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.tenant.email") %>:</strong>
-    <%= tenant.email %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.tenant.rent_amount") %>:</strong>
-    <%= tenant.rent_amount %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.tenant.charges_amount") %>:</strong>
-    <%= tenant.charges_amount %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.tenant.lease_start_date") %>:</strong>
-    <%= tenant.lease_start_date %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.tenant.lease_end_date") %>:</strong>
-    <%= tenant.lease_end_date %>
-  </p>
+<div id="<%= dom_id tenant %>" class="card shadow-sm h-100">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="fw-semibold">
+      <i class="fas fa-user text-primary me-1"></i>
+      <%= [tenant.first_name, tenant.last_name].compact.join(" ").presence || t("activerecord.models.tenant.one") %>
+    </div>
+    <% if tenant.email.present? %>
+      <span class="badge bg-light">
+        <%= mail_to tenant.email, tenant.email %>
+      </span>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-12">
+        <div class="text-muted small"><i class="fas fa-building me-1"></i> <%= t("activerecord.models.property.one") %></div>
+        <div class="fw-semibold">
+          <% if tenant.property.present? %>
+            <%= tenant.property.address.presence || (t("activerecord.models.property.one") + " #" + tenant.property.id.to_s) %>
+          <% else %>
+            <%= t("activerecord.attributes.tenant.property_id") %>: <%= tenant.property_id %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="text-muted small"><%= t("activerecord.attributes.tenant.rent_amount") %></div>
+        <div class="fw-semibold"><%= number_to_currency(tenant.rent_amount) if tenant.rent_amount.present? %></div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="text-muted small"><%= t("activerecord.attributes.tenant.charges_amount") %></div>
+        <div class="fw-semibold"><%= number_to_currency(tenant.charges_amount) if tenant.charges_amount.present? %></div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="text-muted small"><%= t("activerecord.attributes.tenant.lease_start_date") %></div>
+        <div class="fw-semibold"><%= l(tenant.lease_start_date, format: :long) if tenant.lease_start_date.present? %></div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="text-muted small"><%= t("activerecord.attributes.tenant.lease_end_date") %></div>
+        <div class="fw-semibold"><%= l(tenant.lease_end_date, format: :long) if tenant.lease_end_date.present? %></div>
+      </div>
+    </div>
+  </div>
+  <% if local_assigns[:show_actions] %>
+    <div class="card-footer d-flex gap-2">
+      <%= link_to t("helpers.show", model: t("activerecord.models.tenant.one")), [tenant.property.company, tenant], class: "btn btn-outline-primary btn-sm" %>
+      <%= link_to t("helpers.edit", model: t("activerecord.models.tenant.one")), edit_company_tenant_path(tenant.property.company, tenant), class: "btn btn-outline-secondary btn-sm" %>
+    </div>
+  <% end %>
 </div>
