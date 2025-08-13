@@ -1,30 +1,62 @@
-<div id="<%= dom_id financial_operation %>">
-  <p>
-    <strong><%= t("activerecord.attributes.financial_operation.property_id") %>:</strong>
-    <%= financial_operation.property_id %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.financial_operation.tenant_id") %>:</strong>
-    <%= financial_operation.tenant_id %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.financial_operation.associate_id") %>:</strong>
-    <%= financial_operation.associate_id %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.financial_operation.category") %>:</strong>
-    <%= financial_operation.category %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.financial_operation.label") %>:</strong>
-    <%= financial_operation.label %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.financial_operation.amount") %>:</strong>
-    <%= financial_operation.amount %>
-  </p>
-  <p>
-    <strong><%= t("activerecord.attributes.financial_operation.date") %>:</strong>
-    <%= financial_operation.date %>
-  </p>
+<div id="<%= dom_id financial_operation %>" class="card shadow-sm mb-3">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <div>
+      <i class="fas fa-file-invoice-dollar text-primary"></i>
+      <%= t("activerecord.models.financial_operation.one") %>
+      #<%= financial_operation.id %>
+    </div>
+    <div class="d-flex gap-2">
+      <% if financial_operation.category.present? %>
+        <span class="badge bg-primary">
+          <%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}", default: financial_operation.category) %>
+        </span>
+      <% end %>
+      <% if financial_operation.operation_type.present? %>
+        <span class="badge bg-secondary">
+          <%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}", default: financial_operation.operation_type) %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <h5 class="card-title mb-3">
+      <%= financial_operation.label.presence || t("activerecord.attributes.financial_operation.label") %>
+    </h5>
+
+    <div class="row gy-2">
+      <div class="col-md-4">
+        <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.amount") %></div>
+        <div class="fw-semibold"><%= number_to_currency(financial_operation.amount) %></div>
+      </div>
+      <div class="col-md-4">
+        <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.operation_date") %></div>
+        <div class="fw-semibold"><%= l(financial_operation.operation_date, format: :long) if financial_operation.operation_date %></div>
+      </div>
+      <div class="col-md-4">
+        <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.property") %></div>
+        <div class="fw-semibold"><%= financial_operation.property&.address || "—" %></div>
+      </div>
+      <div class="col-md-4">
+        <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.tenant") %></div>
+        <div class="fw-semibold"><%= financial_operation.tenant&.email || "—" %></div>
+      </div>
+      <div class="col-md-4">
+        <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.associate") %></div>
+        <div class="fw-semibold"><%= financial_operation.associate&.email || "—" %></div>
+      </div>
+      <% if financial_operation.description.present? %>
+        <div class="col-12">
+          <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.description") %></div>
+          <div><%= simple_format(financial_operation.description) %></div>
+        </div>
+      <% end %>
+      <% if financial_operation.respond_to?(:reference_number) && financial_operation.reference_number.present? %>
+        <div class="col-md-4">
+          <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.reference_number") %></div>
+          <div class="fw-semibold"><%= financial_operation.reference_number %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
