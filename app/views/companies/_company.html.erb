@@ -75,9 +75,10 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col"><%= t("activerecord.attributes.financial_operation.category") %></th>
+          <th scope="col"><%= t("activerecord.attributes.financial_operation.operation_type") %></th>
           <th scope="col"><%= t("activerecord.attributes.financial_operation.label") %></th>
           <th scope="col"><%= t("activerecord.attributes.financial_operation.amount") %></th>
-          <th scope="col"><%= t("activerecord.attributes.financial_operation.date") %></th>
+          <th scope="col"><%= t("activerecord.attributes.financial_operation.operation_date") %></th>
           <th scope="col"><%= t("activerecord.attributes.financial_operation.property") %></th>
           <th scope="col"><%= t("activerecord.attributes.financial_operation.associate") %></th>
           <th scope="col"><%= t("activerecord.attributes.financial_operation.tenant") %></th>
@@ -87,12 +88,13 @@
         <% company.financial_operations.each_with_index do |financial_operation, index| %>
           <tr>
             <th scope="row"><%= link_to index + 1, company_financial_operation_path(company, financial_operation) %></th>
-            <td><%= financial_operation.category %></td>
+            <td><%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}") %></td>
+            <td><%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}") %></td>
             <td><%= financial_operation.label %></td>
             <td class="<%= financial_operation.amount < 0 ? 'text-danger' : financial_operation.amount > 0 ? 'text-success' : '' %>">
               <%= number_to_currency(financial_operation.amount) %>
             </td>
-            <td><%= l(financial_operation.date, format: :medium) if financial_operation.date %></td>
+            <td><%= l(financial_operation.operation_date, format: :medium) if financial_operation.operation_date %></td>
             <td><%= financial_operation.property&.description %></td>
             <td><%= financial_operation.associate&.first_name %></td>
             <td><%= financial_operation.tenant&.first_name %></td>

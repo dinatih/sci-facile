@@ -4,10 +4,13 @@ FactoryBot.define do
     property { nil }
     tenant { nil }
     associate { nil }
-    category { %w[recette dépense apport remboursement].sample }
+    # Use enum KEYS (see FinancialOperation enum :category)
+    category { %w[income expense contribution refund].sample }
+    # operation_type will be aligned with category in after(:build)
+    operation_type { nil }
     label { "Opération #{category}" }
     amount { rand(100..5000) }
-    date { Faker::Date.between(from: 1.year.ago, to: Date.current) }
+    operation_date { Faker::Date.between(from: 1.year.ago, to: Date.current) }
 
     trait :with_associate_from_company do
       after(:build) do |financial_operation|
@@ -54,50 +57,67 @@ FactoryBot.define do
     end
 
     trait :rental_income do
-      category { "recette" }
+      category { "income" }
+      operation_type { "rent" }
       label { "Loyer" }
       amount { rand(400..1500) }
       with_property_with_tenant_from_company
     end
 
     trait :expense do
-      category { "dépense" }
+      category { "expense" }
+      operation_type { "charges" }
       label { %w[Travaux Charges Assurance Taxe].sample }
       amount { rand(50..2000) }
       with_property_from_company
     end
 
     trait :contribution do
-      category { "apport" }
+      category { "contribution" }
       label { "Apport en compte courant" }
       amount { rand(1000..10000) }
       with_associate_from_company
     end
 
     trait :reimbursement do
-      category { "remboursement" }
+      category { "refund" }
       label { "Remboursement compte courant" }
       amount { rand(500..5000) }
       with_associate_from_company
     end
 
     trait :maintenance do
-      category { "dépense" }
+      category { "expense" }
+      operation_type { "maintenance" }
       label { "Travaux de maintenance" }
       amount { rand(200..3000) }
       with_property_from_company
     end
 
     trait :large_amount do
+      category { "expense" }
+      operation_type { "maintenance" }
+      with_property_with_tenant_from_company
+      label { "Frais importants" }
       amount { rand(5000..50000) }
     end
 
     trait :recent do
-      date { Faker::Date.between(from: 1.month.ago, to: Date.current) }
+      category { "income" }
+      operation_type { "rent" }
+      with_property_with_tenant_from_company
+      label { "Loyer" }
+      amount { rand(400..1500) }
+      operation_date { Faker::Date.between(from: 1.month.ago, to: Date.current) }
     end
 
     trait :last_year do
-      date { Faker::Date.between(from: 1.year.ago, to: 1.month.ago) }
+      category { "income" }
+      operation_type { "rent" }
+      label { "Loyer" }
+      amount { rand(400..1500) }
+      with_property_with_tenant_from_company
+      operation_date { Faker::Date.between(from: 1.year.ago, to: 1.month.ago) }
     end
   end
 end

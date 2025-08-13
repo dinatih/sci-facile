@@ -10,33 +10,51 @@
     </div>
   <% end %>
 
-  <div class="col-12">
+  <div class="col-md-6">
+    <%= form.label :category, t('activerecord.attributes.financial_operation.category'), class: "form-label" %>
+    <%= form.select :category,
+          options_for_select(FinancialOperation.categories.keys.map { |k| [t("activerecord.attributes.financial_operation.categories.#{k}"), k] }, financial_operation.category),
+          { include_blank: false },
+          { class: "form-select" } %>
+  </div>
+  <div class="col-md-6">
+    <%= form.label :operation_type, t('activerecord.attributes.financial_operation.operation_type'), class: "form-label" %>
+    <%= form.select :operation_type,
+          options_for_select(FinancialOperation.operation_types.keys.map { |k| [t("activerecord.attributes.financial_operation.operation_types.#{k}"), k] }, financial_operation.operation_type),
+          { include_blank: true },
+          { class: "form-select" } %>
+  </div>
+  <div class="col-md-6">
     <%= form.label :property, class: "form-label" %>
-    <%= form.collection_select :property, @company.properties, :id, :address, { include_blank: true }, { class: "form-select" } %>
+    <%= form.collection_select :property_id, @company.properties, :id, :address, { include_blank: true }, { class: "form-select" } %>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :tenant, class: "form-label" %>
-    <%= form.collection_select :tenant, @company.tenants, :id, :email, { include_blank: true }, { class: "form-select" } %>
+    <%= form.collection_select :tenant_id, @company.tenants, :id, :email, { include_blank: true }, { class: "form-select" } %>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :associate, class: "form-label" %>
-    <%= form.collection_select :associate, @company.associates, :id, :email, { include_blank: true }, { class: "form-select" } %>
+    <%= form.collection_select :associate_id, @company.associates, :id, :email, { include_blank: true }, { class: "form-select" } %>
   </div>
-  <div class="col-12">
-    <%= form.label :category, class: "form-label" %>
-    <%= form.text_field :category, class: "form-control" %>
-  </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :label, class: "form-label" %>
     <%= form.text_field :label, class: "form-control" %>
   </div>
-  <div class="col-12">
+  <div class="col-md-6">
     <%= form.label :amount, class: "form-label" %>
-    <%= form.text_field :amount, class: "form-control" %>
+    <%= form.number_field :amount, step: "0.01", min: 0, class: "form-control" %>
   </div>
-  <div class="col-12">
-    <%= form.label :date, class: "form-label" %>
-    <%= form.date_field :date, class: "form-control" %>
+  <div class="col-md-6">
+    <%= form.label :operation_date, t('activerecord.attributes.financial_operation.operation_date'), class: "form-label" %>
+    <%= form.date_field :operation_date, class: "form-control" %>
+  </div>
+  <div class="col-md-6">
+    <%= form.label :description, t('activerecord.attributes.financial_operation.description', default: 'Description'), class: "form-label" %>
+    <%= form.text_area :description, rows: 3, class: "form-control" %>
+  </div>
+  <div class="col-md-6">
+    <%= form.label :reference_number, t('activerecord.attributes.financial_operation.reference_number', default: 'Référence'), class: "form-label" %>
+    <%= form.text_field :reference_number, class: "form-control" %>
   </div>
   <div class="col-12">
     <%= form.submit class: "btn btn-primary" %>

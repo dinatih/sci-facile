@@ -58,9 +58,25 @@ fr:
         tenant: "Locataire"
         associate: "Associé(e)"
         category: "Catégorie"
+        categories:
+          income: "Recette"
+          expense: "Dépense"
+          contribution: "Apport"
+          refund: "Remboursement"
+        operation_type: "Type d'opération"
+        operation_types:
+          rent: "Loyer"
+          charges: "Charges"
+          insurance: "Assurance"
+          tax: "Taxe"
+          maintenance: "Travaux"
+          initial_contribution: "Apport initial"
+          current_account_contribution: "Apport en compte courant"
+          current_account_refund: "Remboursement compte courant"
+          other: "Autre"
         label: "Libellé"
         amount: "Montant (€)"
-        date: "Date"
+        operation_date: "Date de l'opération"
 
       general_meeting:
         company: "SCI"
@@ -115,6 +131,7 @@ fr:
         one: ne fait pas la bonne longueur (doit comporter un seul caractère)
         other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
       other_than: doit être différent de %{count}
+      operation_type_incompatible_with_category: "%{operation_type} n'est pas compatible avec la catégorie %{category}"
     # template:
     #   body: 'Veuillez vérifier les champs suivants : '
     #   header:

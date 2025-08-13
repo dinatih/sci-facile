@@ -70,6 +70,20 @@ class FinancialOperationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def financial_operation_params
-      params.expect(financial_operation: [ :company_id, :property_id, :tenant_id, :associate_id, :category, :label, :amount, :date ])
+      params.expect(
+        financial_operation: [
+          :company_id,
+          :property_id,
+          :tenant_id,
+          :associate_id,
+          :category,
+          :operation_type,
+          :label,
+          :description,
+          :reference_number,
+          :amount,
+          :operation_date
+        ]
+      )
     end
 end

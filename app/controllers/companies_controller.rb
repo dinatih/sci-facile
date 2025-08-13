@@ -11,20 +11,20 @@ class CompaniesController < ApplicationController
     period = params[:period] || "year"
     start_date, end_date = period_dates(period)
 
-    ops = @company.financial_operations.where(date: start_date..end_date)
+    ops = @company.financial_operations.where(operation_date: start_date..end_date)
 
-    @total_income = ops.where(category: "recette").sum(:amount)
-    @total_expense = ops.where(category: "dépense").sum(:amount)
+    @total_income = ops.where(category: "income").sum(:amount)
+    @total_expense = ops.where(category: "expense").sum(:amount)
     @current_balance = @total_income - @total_expense
 
     # Graph: income vs expenses by month
-    # @monthly_data = ops.group_by_month(:date, format: "%b %Y").sum(:amount)
-    @monthly_income  = ops.where(category: "recette").group_by_month(:date, format: "%b %Y").sum(:amount)
-    @monthly_expense = ops.where(category: "dépense").group_by_month(:date, format: "%b %Y").sum(:amount)
+    # @monthly_data = ops.group_by_month(:operation_date, format: "%b %Y").sum(:amount)
+    @monthly_income  = ops.where(category: "income").group_by_month(:operation_date, range: start_date..end_date, format: "%b %Y", series: true, time_zone: "Europe/Paris").sum(:amount)
+    @monthly_expense = ops.where(category: "expense").group_by_month(:operation_date, range: start_date..end_date, format: "%b %Y", series: true, time_zone: "Europe/Paris").sum(:amount)
 
     # Top properties income
     @top_properties_income = @company.properties.joins(:financial_operations)
-                                     .where(financial_operations: { category: "recette", date: start_date..end_date })
+                                     .where(financial_operations: { category: "income", operation_date: start_date..end_date })
                                      .group(:id, :address)
                                      .sum("financial_operations.amount")
                                      .sort_by { |_k, v| -v }

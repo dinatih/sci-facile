@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_07_013951) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_12_192418) do
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,12 +60,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_07_013951) do
     t.integer "associate_id"
     t.string "category"
     t.string "label"
-    t.decimal "amount"
-    t.date "date"
+    t.decimal "amount", precision: 10, scale: 2
+    t.date "operation_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "operation_type"
+    t.text "description"
+    t.string "reference_number"
+    t.json "metadata"
+    t.index ["associate_id", "category"], name: "index_financial_operations_on_associate_id_and_category"
     t.index ["associate_id"], name: "index_financial_operations_on_associate_id"
+    t.index ["category"], name: "index_financial_operations_on_category"
+    t.index ["company_id", "category", "operation_date"], name: "idx_on_company_id_category_operation_date_9cfb5aa3fa"
+    t.index ["company_id", "category"], name: "index_financial_operations_on_company_id_and_category"
+    t.index ["company_id", "operation_date"], name: "index_financial_operations_on_company_id_and_operation_date"
     t.index ["company_id"], name: "index_financial_operations_on_company_id"
+    t.index ["operation_date"], name: "index_financial_operations_on_operation_date"
+    t.index ["operation_type"], name: "index_financial_operations_on_operation_type"
+    t.index ["property_id", "operation_date"], name: "index_financial_operations_on_property_id_and_operation_date"
     t.index ["property_id"], name: "index_financial_operations_on_property_id"
     t.index ["tenant_id"], name: "index_financial_operations_on_tenant_id"
   end
