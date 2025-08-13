@@ -4,11 +4,15 @@ class PropertiesController < ApplicationController
 
   # GET /properties or /properties.json
   def index
+    period = params[:period] || "year"
+    @start_date, @end_date = period_dates(period)
     @properties = @company.properties
   end
 
   # GET /properties/1 or /properties/1.json
   def show
+    period = params[:period] || "year"
+    @start_date, @end_date = period_dates(period)
   end
 
   # GET /properties/new
@@ -71,5 +75,16 @@ class PropertiesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def property_params
       params.expect(property: [ :company_id, :address, :description, :acquisition_date, :acquisition_price ])
+    end
+
+    def period_dates(period)
+      case period
+      when "month"
+        [ Date.today.beginning_of_month, Date.today.end_of_month ]
+      when "quarter"
+        [ Date.today.beginning_of_quarter, Date.today.end_of_quarter ]
+      else # year
+        [ Date.today.beginning_of_year, Date.today.end_of_year ]
+      end
     end
 end
