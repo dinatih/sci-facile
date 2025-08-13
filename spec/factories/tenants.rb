@@ -3,7 +3,7 @@ FactoryBot.define do
     property
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    email { Faker::Internet.email(name: "#{first_name} #{last_name}") }
+    email { Faker::Internet.email(name: "#{I18n.transliterate(first_name)} #{I18n.transliterate(last_name)}") }
     rent_amount { rand(400..1500) }
     charges_amount { rand(50..200) }
     lease_start_date { rand(2.years.ago..6.months.ago).to_date }
