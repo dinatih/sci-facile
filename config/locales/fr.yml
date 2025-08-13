@@ -121,9 +121,14 @@ fr:
     destroy: "Supprimer ce/cette %{model}"
     new: "Créer un(e) %{model}"
     show: "Voir ce/cette %{model}"
+    select:
+      prompt: "Sélectionner"
+
     submit:
       create: "Créer ce/cette %{model}"
       update: "Mettre à jour ce/cette %{model}"
+      submit: "Enregistrer ce/cette %{model}"
+
       associate:
         create: "Enregistrer cet Associé(e)"
         update: "Modifier cet Associé(e)"
@@ -278,13 +283,6 @@ fr:
       month: Mois
       second: Seconde
       year: Année
-  # helpers:
-  #   select:
-  #     prompt: Veuillez sélectionner
-  #   submit:
-  #     create: Créer un(e) %{model}
-  #     submit: Enregistrer ce/cette %{model}
-  #     update: Modifier ce/cette %{model}
   number:
     currency:
       format:
