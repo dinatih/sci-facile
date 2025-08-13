@@ -20,12 +20,12 @@ document.addEventListener("turbo:load", () => {
         {
           label: "Recettes (€)",
           data: income,
-          backgroundColor: "#4e73df"
+          backgroundColor: "#22b24c"
         },
         {
           label: "Dépenses (€)",
           data: expense,
-          backgroundColor: "#eb6864"
+          backgroundColor: "#dc3545"
         }
       ]
     } 
