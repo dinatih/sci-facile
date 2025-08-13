@@ -106,6 +106,8 @@ fr:
         label: "Libellé"
         amount: "Montant (€)"
         operation_date: "Date de l'opération"
+        description: "Description"
+        reference_number: "Référence"
 
       general_meeting:
         company: "SCI"
@@ -122,6 +124,15 @@ fr:
     submit:
       create: "Créer ce/cette %{model}"
       update: "Mettre à jour ce/cette %{model}"
+      associate:
+        create: "Enregistrer cet Associé(e)"
+        update: "Modifier cet Associé(e)"
+      property:
+        create: "Enregistrer ce Bien immobilier"
+        update: "Modifier ce Bien immobilier"
+      financial_operation:
+        create: "Enregistrer cette Opération financière"
+        update: "Modifier cette Opération financière"
     errors_prohibited:
       one: "%{count} erreur a empêché ce/cette %{model} d'être enregistré(e) :"
       other: "%{count} erreurs ont empêché ce/cette %{model} d'être enregistré(e) :"
