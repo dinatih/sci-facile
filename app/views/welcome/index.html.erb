@@ -1,139 +1,84 @@
-<style>  
-  /* Style pour la section hero */
-  .hero-section {
-    color: white;
-    padding: 100px 0;
-  }
-  
-  /* Espacement pour les sections */
-  .section {
-    padding: 80px 0;
-  }
-</style>
-
-<!-- Section Hero -->
-<section class="hero-section bg-primary">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 mb-4">
-        <h1 class="display-4 fw-bold mb-4">
-          Gérez votre SCI en toute simplicité
-        </h1>
-        <p class="lead mb-4">
-          SCI-Facile vous accompagne dans la gestion complète de votre Société Civile Immobilière. 
-          Comptabilité, déclarations fiscales, suivi des associés : tout devient simple et automatisé.
-        </p>
-        <div class="d-flex flex-wrap gap-3">
-          <a href="#demo" class="btn btn-light btn-lg">
-            <i class="fas fa-play me-2"></i>Voir la démo
-          </a>
-          <%= link_to "Essai gratuit 30 jours", new_associate_registration_path, class: "btn btn-outline-light btn-lg" %>
-        </div>
+<section id="hero">
+  <div class="row align-items-center">
+    <div class="col-lg-6 mb-4">
+      <h1 class="display-4 fw-bold mb-4">
+        Gérez votre SCI en toute simplicité
+      </h1>
+      <p class="lead mb-4">
+        SCI-Facile vous accompagne dans la gestion complète de votre Société Civile Immobilière. 
+        Comptabilité, déclarations fiscales, suivi des associés : tout devient simple et automatisé.
+      </p>
+      <div class="d-flex flex-wrap gap-3">
+        <a href="#demo" class="btn btn-dark btn-lg">
+          <i class="fas fa-play me-2"></i>Voir la démo
+        </a>
+        <%= link_to "Essai gratuit 30 jours", new_associate_registration_path, class: "btn btn-outline-dark btn-lg" %>
       </div>
-      <div class="col-lg-6 text-center">
-        <img src="/sci-facile-hero.png" class="img-fluid rounded shadow" alt="Image hero">
-      </div>
+    </div>
+    <div class="col-lg-6 text-center">
+      <img src="/sci-facile-hero.png" class="img-fluid rounded shadow" alt="Image hero">
     </div>
   </div>
 </section>
 
-<section id="fonctionnalites" class="bg-light py-5">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-lg-8 mx-auto text-center">
-        <h2 class="display-5 fw-bold mb-3">Tout ce dont vous avez besoin</h2>
-        <p class="lead text-muted">
-          Une solution complète pour simplifier la gestion de votre SCI
-        </p>
-      </div>
-    </div>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body text-center p-4">
-            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-              <i class="fas fa-calculator fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Comptabilité automatisée</h4>
-            <p class="text-muted">
-              Saisie automatique des écritures comptables, calcul des amortissements 
-              et génération des documents comptables.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center p-4">
-            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-              <i class="fas fa-file-invoice fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Déclarations fiscales</h4>
-            <p class="text-muted">
-              Génération automatique des déclarations fiscales (2072, 2044) 
-              et transmission dématérialisée aux services fiscaux.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center p-4">
-            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-              <i class="fas fa-users fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Gestion des associés</h4>
-            <p class="text-muted">
-              Suivi des parts sociales, calcul automatique des répartitions 
-              et envoi des relevés individuels.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center p-4">
-            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-              <i class="fas fa-home fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Suivi patrimonial</h4>
-            <p class="text-muted">
-              Valorisation du patrimoine immobilier, calcul des plus-values 
-              et optimisation fiscale.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center p-4">
-            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-              <i class="fas fa-shield-alt fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Sécurité garantie</h4>
-            <p class="text-muted">
-              Hébergement sécurisé en France, sauvegarde automatique 
-              et conformité RGPD.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center p-4">
-            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-              <i class="fas fa-mobile-alt fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Accès mobile</h4>
-            <p class="text-muted">
-              Application responsive, consultation de vos données 
-              depuis n'importe quel appareil.
-            </p>
-          </div>
-        </div>
-      </div>
+<section id="fonctionnalites" class="py-5">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto text-center">
+      <h2 class="display-5 fw-bold mb-3">Tout ce dont vous avez besoin</h2>
+      <p class="lead text-muted">
+        Une solution complète pour simplifier la gestion de votre SCI
+      </p>
     </div>
   </div>
+  <div class="row g-4">
+    <% featured_services_data = [
+      {
+        icon: "calculator",
+        title: "Comptabilité automatisée",
+        description: "Saisie automatique des écritures comptables, calcul des amortissements et génération des documents comptables."
+        },
+        {
+          icon: "file-invoice",
+          title: "Déclarations fiscales",
+          description: "Génération automatique des déclarations fiscales (2072, 2044) et transmission dématérialisée aux services fiscaux."
+        },
+        {
+          icon: "users",
+          title: "Gestion des associés",
+          description: "Suivi des parts sociales, calcul automatique des répartitions et envoi des relevés individuels."
+        },
+        {
+          icon: "home",
+          title: "Suivi patrimonial",
+          description: "Valorisation du patrimoine immobilier, calcul des plus-values et optimisation fiscale."
+        },
+        {
+          icon: "shield-alt",
+          title: "Sécurité garantie",
+          description: "Hébergement sécurisé en France, sauvegarde automatique et conformité RGPD."
+        },
+        {
+          icon: "mobile-alt",
+          title: "Accès mobile",
+          description: "Application responsive, consultation de vos données depuis n'importe quel appareil."
+        }
+      ]
+    %>
+    <% featured_services_data.each do |service| %>
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+              <i class="fas fa-<%= service[:icon] %> fa-2x"></i>
+            </div>
+            <h4 class="fw-bold mb-3"><%= service[:title] %></h4>
+            <p class="text-muted">
+              <%= service[:description] %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
 </section>
 <%= render 'pricing' %>
 <%= render 'footer' %>
