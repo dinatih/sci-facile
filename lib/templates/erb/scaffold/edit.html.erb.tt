@@ -2,11 +2,7 @@
 
 <h1 class="mb-4"><%%= t("helpers.edit", model: t("activerecord.models.<%= singular_table_name %>.one")) %></h1>
 
-<div class="card mb-4">
-  <div class="card-body">
-    <%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
-  </div>
-</div>
+<%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
 
 <div class="mb-3">
   <%%= link_to t("helpers.show", model: t("activerecord.models.<%= singular_table_name %>.one")), <%= model_resource_name(prefix: "@") %>, class: "btn btn-outline-primary me-2" %>
