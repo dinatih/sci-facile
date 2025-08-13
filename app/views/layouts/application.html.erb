@@ -25,11 +25,9 @@
   <body style="padding-top: <%= current_page?('/') ? '56px' : '72px' %>;">
     <%= render 'shared/navbar' %>
     <%= render 'shared/company_navbar' if @company %>
-    <div class="<%= current_page?('/') ? '' : 'container' %>">
+    <div class="container py-4">
       <%= render 'shared/flash_messages' %>
-      <div>
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
   </body>
 </html>
