@@ -73,6 +73,7 @@ fr:
 
       tenant:
         property: "Bien immobilier"
+        property_id: "Bien immobilier"
         first_name: "Prénom"
         last_name: "Nom"
         email: "Email"
@@ -84,8 +85,11 @@ fr:
       financial_operation:
         company: "SCI"
         property: "Bien immobilier"
+        property_id: "Bien immobilier"
         tenant: "Locataire"
+        tenant_id: "Locataire"
         associate: "Associé(e)"
+        associate_id: "Associé(e)"
         category: "Catégorie"
         categories:
           income: "Recette"
@@ -116,18 +120,17 @@ fr:
         minutes_text: "Procès-verbal"
 
   helpers:
-    edit: "Modifier ce/cette %{model}"
-    back: "Retour aux %{model}"
-    destroy: "Supprimer ce/cette %{model}"
     new: "Créer un(e) %{model}"
-    show: "Voir ce/cette %{model}"
+    show: "Voir"
+    edit: "Modifier"
+    destroy: "Supprimer"
+
     select:
       prompt: "Sélectionner"
 
     submit:
-      create: "Créer ce/cette %{model}"
-      update: "Mettre à jour ce/cette %{model}"
-      submit: "Enregistrer ce/cette %{model}"
+      create: "Créer"
+      update: "Mettre à jour"
 
       associate:
         create: "Enregistrer cet Associé(e)"
@@ -138,6 +141,10 @@ fr:
       financial_operation:
         create: "Enregistrer cette Opération financière"
         update: "Modifier cette Opération financière"
+      tenant:
+        submit: "Enregistrer ce(tte) Locataire"
+        # create: "Enregistrer ce Locataire"
+        # update: "Modifier ce Locataire"
     errors_prohibited:
       one: "%{count} erreur a empêché ce/cette %{model} d'être enregistré(e) :"
       other: "%{count} erreurs ont empêché ce/cette %{model} d'être enregistré(e) :"
