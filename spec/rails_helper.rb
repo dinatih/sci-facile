@@ -45,6 +45,9 @@ module CapybaraSlowMo
   def fill_in(*args, **kwargs)
     super(*args, **kwargs).tap { sleep 0.5 }
   end
+  def visit(*args, **kwargs)
+    super(*args, **kwargs).tap { sleep 3 }
+  end
 end
 
 RSpec.configure do |config|
