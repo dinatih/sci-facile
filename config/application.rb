@@ -65,7 +65,6 @@ module SciFacile
       enable_starttls_auto: true
     }
 
-    # config.action_mailer.default_url_options = { host: "localhost", port: 3000 } # pour development
     config.action_mailer.default_options = {
       from: "sci.facile.saas@gmail.com"
     }
