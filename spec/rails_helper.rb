@@ -89,9 +89,16 @@ RSpec.configure do |config|
   capybara_port = ENV["CAPYBARA_SERVER_PORT"] || 45678
   Capybara.server_host = "0.0.0.0"
   Capybara.app_host = "http://#{rails_service}:#{capybara_port}"
-
-  config.before(:each, type: :system) do
-    driven_by :selenium, using: :chrome, options: { browser: :remote, url: selenium_url }
+  Capybara.register_driver :selenium_chrome do |app|
+    chrome_options = Selenium::WebDriver::Options.chrome(
+    args: [ "window-size=1920,1060", "--disable-save-password-bubble" ]
+    )
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :remote,
+      url: ENV["SELENIUM_REMOTE_URL"],
+      options: chrome_options
+    )
   end
 
   config.include Devise::Test::IntegrationHelpers, type: :request
@@ -105,6 +112,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do
+    driven_by :selenium_chrome
     Capybara.current_session.extend(CapybaraSlowMo)
     DatabaseCleaner.strategy = :truncation
   end
