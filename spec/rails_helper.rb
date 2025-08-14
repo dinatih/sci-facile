@@ -42,8 +42,8 @@ module CapybaraSlowMo
   def click_link(*)
     super.tap { sleep 0.5 }
   end
-  def fill_in(*)
-    super.tap { sleep 0.5 }
+  def fill_in(*args, **kwargs)
+    super(*args, **kwargs).tap { sleep 0.5 }
   end
 end
 
