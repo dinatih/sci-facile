@@ -40,17 +40,19 @@
       <%= form.number_field :current_account_balance, class: "form-control", step: "0.01" %>
     </div>
   </div>
-  <div class="col-md-6">
-    <%= form.label :password, class: "form-label" %>
-    <% if @minimum_password_length %>
-      <div class="form-text"><%= t("devise.shared.minimum_password_length.other", count: @minimum_password_length, default: "#{@minimum_password_length} caractères minimum") %></div>
-    <% end %>
-    <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :password_confirmation, class: "form-label" %>
-    <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-  </div>
+  <% unless associate.persisted? %>
+    <div class="col-md-6">
+      <%= form.label :password, class: "form-label" %>
+      <% if @minimum_password_length %>
+        <div class="form-text"><%= t("devise.shared.minimum_password_length.other", count: @minimum_password_length, default: "#{@minimum_password_length} caractères minimum") %></div>
+      <% end %>
+      <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :password_confirmation, class: "form-label" %>
+      <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
+  <% end %>
   <div class="col-12">
     <%= form.submit class: "btn btn-primary" %>
   </div>

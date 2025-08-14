@@ -76,6 +76,7 @@ class AssociatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def associate_params
-      params.expect(associate: [ :company_id, :first_name, :last_name, :email, :shares_count, :initial_contribution, :current_account_balance ])
+      params.expect(associate: [  :company_id, :first_name, :last_name, :email, :shares_count,
+                                  :initial_contribution, :current_account_balance, :password, :password_confirmation ])
     end
 end
