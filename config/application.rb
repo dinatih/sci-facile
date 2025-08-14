@@ -49,6 +49,8 @@ module SciFacile
       g.view_specs false
     end
 
+    config.hosts << /\Arails-app:\d+\z/
+
     config.hosts << /.*\.ngrok\.io/
     config.hosts << /.*\.ngrok-free\.app/
 
