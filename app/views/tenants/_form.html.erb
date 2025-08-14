@@ -1,58 +1,58 @@
-<%= form_with(model: [@company, tenant], html: { class: "row g-3" }) do |form| %>
-  <% if tenant.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= t("helpers.errors_prohibited", count: tenant.errors.count, model: t("activerecord.models.tenant.one")) %></h2>
-      <ul>
-        <% tenant.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: [@company, tenant], html: { class: "row g-3" }) do |form| %>
+      <% if tenant.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= t("helpers.errors_prohibited", count: tenant.errors.count, model: t("activerecord.models.tenant.one")) %></h2>
+          <ul>
+            <% tenant.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div class="col-md-6">
-    <%= form.label :property_id, class: "form-label" %>
-    <% if defined?(@properties) && @properties.present? %>
-      <%= form.collection_select :property_id, @properties, :id, :address, { include_blank: t("helpers.select.prompt", default: "Sélectionner") }, { class: "form-select" } %>
-    <% else %>
-      <%= form.number_field :property_id, class: "form-control", min: 1, step: 1 %>
+      <div class="col-md-6">
+        <%= form.label :property_id, class: "form-label" %>
+        <%= form.collection_select :property_id, @company.properties, :id, :address, {}, { class: "form-select" } %>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.email_field :email, class: "form-control", placeholder: "email@example.com" %>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :first_name, class: "form-label" %>
+        <%= form.text_field :first_name, class: "form-control", placeholder: t("helpers.placeholders.first_name", default: "Prénom") %>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :last_name, class: "form-label" %>
+        <%= form.text_field :last_name, class: "form-control", placeholder: t("helpers.placeholders.last_name", default: "Nom") %>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :rent_amount, class: "form-label" %>
+        <div class="input-group">
+          <span class="input-group-text">€</span>
+          <%= form.number_field :rent_amount, class: "form-control", step: "0.01" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :charges_amount, class: "form-label" %>
+        <div class="input-group">
+          <span class="input-group-text">€</span>
+          <%= form.number_field :charges_amount, class: "form-control", step: "0.01" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :lease_start_date, class: "form-label" %>
+        <%= form.date_field :lease_start_date, class: "form-control" %>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :lease_end_date, class: "form-label" %>
+        <%= form.date_field :lease_end_date, class: "form-control" %>
+      </div>
+      <div class="col-12">
+        <%= form.submit class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
-  <div class="col-md-6">
-    <%= form.label :email, class: "form-label" %>
-    <%= form.email_field :email, class: "form-control", placeholder: "email@example.com" %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :first_name, class: "form-label" %>
-    <%= form.text_field :first_name, class: "form-control", placeholder: t("helpers.placeholders.first_name", default: "Prénom") %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :last_name, class: "form-label" %>
-    <%= form.text_field :last_name, class: "form-control", placeholder: t("helpers.placeholders.last_name", default: "Nom") %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :rent_amount, class: "form-label" %>
-    <div class="input-group">
-      <span class="input-group-text">€</span>
-      <%= form.number_field :rent_amount, class: "form-control", step: "0.01" %>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :charges_amount, class: "form-label" %>
-    <div class="input-group">
-      <span class="input-group-text">€</span>
-      <%= form.number_field :charges_amount, class: "form-control", step: "0.01" %>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :lease_start_date, class: "form-label" %>
-    <%= form.date_field :lease_start_date, class: "form-control" %>
-  </div>
-  <div class="col-md-6">
-    <%= form.label :lease_end_date, class: "form-label" %>
-    <%= form.date_field :lease_end_date, class: "form-control" %>
-  </div>
-  <div class="col-12">
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>

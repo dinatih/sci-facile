@@ -22,8 +22,6 @@
         <div class="fw-semibold"><%= number_to_currency(property.acquisition_price) if property.acquisition_price %></div>
       </div>
     </div>
-  </div>
-  <div class="card-footer d-flex justify-content-between align-items-center">
     <span class="badge bg-info">
       <i class="fas fa-user text-white-50 me-1"></i>
       <%= pluralize(property.tenants.count, t("activerecord.models.tenant.one"), t("activerecord.models.tenant.other")) %>
@@ -33,7 +31,7 @@
     <% income  = scope.where(category: "income").sum(:amount) %>
     <% expense = scope.where(category: "expense").sum(:amount) %>
     <% balance = income - expense %>
-    <div class="d-flex gap-2">
+    <div>
       <span class="badge bg-success-subtle text-success">
         + <%= number_to_currency(income) %>
       </span>
@@ -44,5 +42,11 @@
         <%= number_to_currency(balance) %>
       </span>
     </div>
+  </div>
+  
+  <div class="card-footer d-flex gap-2">
+    <%= link_to t("helpers.show"), [property.company, property] %>
+    <%= link_to t("helpers.edit"), edit_company_property_path(property.company, property) %>
+    <%= link_to t("helpers.destroy"), [property.company, property], method: :delete, data: { turbo_confirm: t("helpers.are_you_sure") }, class: "text-danger" %>
   </div>
 </div>

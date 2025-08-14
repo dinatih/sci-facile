@@ -15,12 +15,15 @@
   <!-- Associates -->
   <div class="card mb-4" id="associates">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <div>
+      <div class="d-flex align-items-center gap-2">
         <i class="fas fa-user-group text-primary me-2"></i>
         <%= t("activerecord.models.associate.other") %>
         <span class="badge bg-secondary ms-2"><%= company.associates.size %></span>
       </div>
-      <%= link_to t("helpers.new", model: t("activerecord.models.associate.one")), new_company_associate_path(company), class: "btn btn-sm btn-primary" %>
+      <div class="d-flex gap-2">
+        <%= link_to t("helpers.index", default: "Voir tout"), company_associates_path(company), class: "btn btn-sm btn-link" %>
+        <%= link_to t("helpers.new", model: t("activerecord.models.associate.one")), new_company_associate_path(company), class: "btn btn-sm btn-primary" %>
+      </div>
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">
@@ -59,12 +62,15 @@
   <!-- Properties -->
   <div class="card mb-4" id="properties">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <div>
+      <div class="d-flex align-items-center gap-2">
         <i class="fas fa-building text-primary me-2"></i>
         <%= t("activerecord.models.property.other") %>
         <span class="badge bg-secondary ms-2"><%= company.properties.size %></span>
       </div>
-      <%= link_to t("helpers.new", model: t("activerecord.models.property.one")), new_company_property_path(company), class: "btn btn-sm btn-primary" %>
+      <div class="d-flex gap-2">
+        <%= link_to t("helpers.index", default: "Voir tout"), company_properties_path(company), class: "btn btn-sm btn-link" %>
+        <%= link_to t("helpers.new", model: t("activerecord.models.property.one")), new_company_property_path(company), class: "btn btn-sm btn-primary" %>
+      </div>
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">
@@ -97,12 +103,15 @@
   <!-- Financial operations -->
   <div class="card mb-4" id="financial_operations">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <div>
+      <div class="d-flex align-items-center gap-2">
         <i class="fas fa-file-invoice-dollar text-primary me-2"></i>
         <%= t("activerecord.models.financial_operation.other") %>
         <span class="badge bg-secondary ms-2"><%= company.financial_operations.size %></span>
       </div>
-      <%= link_to t("helpers.new", model: t("activerecord.models.financial_operation.one")), new_company_financial_operation_path(company), class: "btn btn-sm btn-primary" %>
+      <div class="d-flex gap-2">
+        <%= link_to t("helpers.index", default: "Voir tout"), company_financial_operations_path(company), class: "btn btn-sm btn-link" %>
+        <%= link_to t("helpers.new", model: t("activerecord.models.financial_operation.one")), new_company_financial_operation_path(company), class: "btn btn-sm btn-primary" %>
+      </div>
     </div>
     <div class="card-body p-0">
       <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
@@ -145,12 +154,15 @@
   <!-- Tenants -->
   <div class="card mb-4" id="tenants">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <div>
+      <div class="d-flex align-items-center gap-2">
         <i class="fas fa-key text-primary me-2"></i>
         <%= t("activerecord.models.tenant.other") %>
         <span class="badge bg-secondary ms-2"><%= company.tenants.size %></span>
       </div>
-      <%= link_to t("helpers.new", model: t("activerecord.models.tenant.one")), new_company_tenant_path(company), class: "btn btn-sm btn-primary" %>
+      <div class="d-flex gap-2">
+        <%= link_to t("helpers.index", default: "Voir tout"), company_tenants_path(company), class: "btn btn-sm btn-link" %>
+        <%= link_to t("helpers.new", model: t("activerecord.models.tenant.one")), new_company_tenant_path(company), class: "btn btn-sm btn-primary" %>
+      </div>
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">
@@ -189,12 +201,15 @@
   <!-- General meetings -->
   <div class="card mb-4" id="general_meetings">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <div>
+      <div class="d-flex align-items-center gap-2">
         <i class="fas fa-pen text-primary me-2"></i>
         <%= t("activerecord.models.general_meeting.other") %>
         <span class="badge bg-secondary ms-2"><%= company.general_meetings.size %></span>
       </div>
-      <%= link_to t("helpers.new", model: t("activerecord.models.general_meeting.one")), new_company_general_meeting_path(company), class: "btn btn-sm btn-primary" %>
+      <div class="d-flex gap-2">
+        <%= link_to t("helpers.index", default: "Voir tout"), company_general_meetings_path(company), class: "btn btn-sm btn-link" %>
+        <%= link_to t("helpers.new", model: t("activerecord.models.general_meeting.one")), new_company_general_meeting_path(company), class: "btn btn-sm btn-primary" %>
+      </div>
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">

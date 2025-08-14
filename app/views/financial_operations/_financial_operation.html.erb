@@ -1,4 +1,4 @@
-<div id="<%= dom_id financial_operation %>" class="card shadow-sm mb-3">
+<div id="<%= dom_id financial_operation %>" class="card shadow-sm h-100">
   <div class="card-header d-flex justify-content-between align-items-center">
     <div>
       <i class="fas fa-file-invoice-dollar text-primary"></i>
@@ -59,4 +59,10 @@
       <% end %>
     </div>
   </div>
+  <% if local_assigns[:show_actions] %>
+    <div class="card-footer d-flex gap-2">
+      <%= link_to t("helpers.show", model: t("activerecord.models.financial_operation.one")), [financial_operation.company, financial_operation], class: "btn btn-outline-primary btn-sm" %>
+      <%= link_to t("helpers.edit", model: t("activerecord.models.financial_operation.one")), edit_company_financial_operation_path(financial_operation.company, financial_operation), class: "btn btn-outline-secondary btn-sm" %>
+    </div>
+  <% end %>
 </div>
