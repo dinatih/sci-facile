@@ -1,43 +1,53 @@
 require 'rails_helper'
 
 RSpec.describe "SCI Facile", type: :system do
-  scenario "Guide touristique" do
-    visit "/"
-    expect(page).to have_content("Gérez votre SCI en toute simplicité")
-
-    # visit new_company_path
-    # fill_in "Nom de la SCI", with: "Eloidine"
-    # click_button "Créer ce/cette SCI"
-    # sleep 10 # Wait for the company to be created
-
+  def register_associate(company_name:, first_name:, last_name:, email:, password:)
     click_link "Connexion"
     click_link "S'inscrire"
 
     expect(page).to have_current_path(new_associate_registration_path)
     expect(page).to have_content("S'inscrire")
-    fill_in "Nom de votre SCI", with: "Eloidine"
-    fill_in "Prénom", with: "David"
-    fill_in "Nom", with: "Herelle"
-    fill_in "Email", with: "david.herelleh@eloidine.com"
-    # fill_in "Nombre de parts", with: "10"
-    # fill_in "Apport initial", with: "1000"
-    # fill_in "Solde du compte courant", with: "500"
-    fill_in "Mot de passe", with: "password"
-    fill_in "Confirmation du Mot de passe", with: "password"
-    click_button "Créer ce/cette Associé(e)" # "S'inscrire"
+    fill_in "Nom de votre SCI", with: company_name
+    fill_in "Prénom", with: first_name
+    fill_in "Nom", with: last_name
+    fill_in "Email", with: email
+    fill_in "Mot de passe", with: password
+    fill_in "Confirmation du Mot de passe", with: password
+    click_button "Créer ce/cette Associé(e)"
     puts page.body if page.has_content?("error")
     expect(page).to have_current_path(company_associates_path(Company.last))
-    expect(page).to have_content("David")
+    expect(page).to have_content(first_name)
+  end
 
-    # # Add an associate
-    # click_link "Ajouter un associé"
-    # fill_in "Prénom", with: "John"
-    # fill_in "Nom", with: "Doe"
-    # fill_in "Email", with: "john.doe@example.com"
-    # fill_in "Nombre de parts", with: "10"
-    # fill_in "Apport initial", with: "1000"
-    # fill_in "Solde du compte courant", with: "500"
-    # click_button "Créer Associé"
+  scenario "Guide touristique" do
+    Rails.application.load_seed
+    # Seed completed: 1 admin users,5 companies, 15 associates, 20 properties, 10 tenants,
+    #                 60 financial operations, 10 general meetings created.
+
+    visit "/"
+    expect(page).to have_content("Gérez votre SCI en toute simplicité")
+
+    current_company = Company.last
+    visit company_path(current_company)
+    visit company_associates_path(current_company)
+    visit company_properties_path(current_company)
+    visit company_financial_operations_path(current_company)
+    visit company_tenants_path(current_company)
+    visit company_general_meetings_path(current_company)
+
+    # expect(page).to have_content("Gérez votre SCI en toute simplicité")
+    # sleep 5
+    # register_associate(
+    #   company_name: "Eloidine",
+    #   first_name: "David",
+    #   last_name: "Herelle",
+    #   email: "david.herelleh@eloidine.com",
+    #   password: "password"
+    # )
+
+
+
+
 
     # # Add a property
     # click_link "Ajouter un bien"
