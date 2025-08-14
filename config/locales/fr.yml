@@ -124,6 +124,7 @@ fr:
     show: "Voir"
     edit: "Modifier"
     destroy: "Supprimer"
+    are_you_sure: "Êtes-vous sûr ?"
 
     select:
       prompt: "Sélectionner"

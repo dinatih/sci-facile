@@ -8,10 +8,6 @@
       <%= link_to "Trimestre", company_property_path(@company, @property, period: :quarter), class: "btn btn-sm btn-outline-secondary #{'active' if params[:period] == 'quarter'}" %>
       <%= link_to "Année", company_property_path(@company, @property, period: :year), class: "btn btn-sm btn-outline-secondary #{'active' if params[:period].blank? || params[:period] == 'year'}" %>
     </div>
-    <div class="btn-group">
-      <%= link_to t("helpers.edit", model: t("activerecord.models.property.one")), edit_company_property_path(@company, @property, period: params[:period]), class: "btn btn-outline-primary" %>
-      <%= button_to t("helpers.destroy", model: t("activerecord.models.property.one")), [@company, @property], method: :delete, class: "btn btn-outline-danger" %>
-    </div>
   </div>
 </div>
 

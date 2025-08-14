@@ -29,6 +29,6 @@
   <div class="card-footer d-flex gap-2"> 
     <%= link_to t("helpers.show"), [associate.company, associate] %>
     <%= link_to t("helpers.edit"), edit_company_associate_path(associate.company, associate) %>
-    <%= link_to t("helpers.destroy"), [associate.company, associate], method: :delete, data: { turbo_confirm: t("helpers.are_you_sure") }, class: "text-danger" %>
+    <%= link_to t("helpers.destroy"), [associate.company, associate], data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") }, class: "text-danger" %>
   </div>
 </div>

@@ -7,14 +7,10 @@
   </h4>
   <div class="d-flex gap-2">
     <%= link_to t("helpers.edit", model: t("activerecord.models.financial_operation.one")), edit_company_financial_operation_path(@company, @financial_operation), class: "btn btn-outline-secondary" %>
-    <%= button_to t("helpers.destroy", model: t("activerecord.models.financial_operation.one")), [@company, @financial_operation], method: :delete, form: { data: { turbo_confirm: t("helpers.are_you_sure") } }, class: "btn btn-danger" %>
+    <%= button_to t("helpers.destroy", model: t("activerecord.models.financial_operation.one")), [@company, @financial_operation], form: { data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") } }, class: "btn btn-danger" %>
   </div>
 </div>
 
 <div class="mb-4">
   <%= render @financial_operation %>
-</div>
-
-<div>
-  <%= link_to t("helpers.back", model: t("activerecord.models.financial_operation.other")), company_financial_operations_path(@company), class: "btn btn-link" %>
 </div>
