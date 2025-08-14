@@ -81,10 +81,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # Ensure SELENIUM_REMOTE_URL is present in the environment
-  selenium_url = ENV["SELENIUM_REMOTE_URL"]
-  raise "SELENIUM_REMOTE_URL environment variable is missing. Please set it in your devcontainer configuration." unless selenium_url
-
   rails_service = ENV["RAILS_SERVICE_NAME"] || "rails-app"
   capybara_port = ENV["CAPYBARA_SERVER_PORT"] || 45678
   Capybara.server_host = "0.0.0.0"
