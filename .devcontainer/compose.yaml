@@ -23,6 +23,8 @@ services:
   selenium:
     image: selenium/standalone-chromium
     restart: unless-stopped
+    shm_size: '256mb'
+
     environment:
       - VNC_NO_PASSWORD=1
     ports:
