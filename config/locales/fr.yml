@@ -28,6 +28,8 @@
 #       enabled: "ON"
 
 fr:
+  app_name: "SCI Facile"
+  
   activerecord:
     models:
       company:
