@@ -12,17 +12,21 @@
   </div>
   <div class="card-body">
     <div class="row g-3">
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-3">
         <div class="text-muted small"><%= t("activerecord.attributes.associate.shares_count") %></div>
-        <div class="fw-semibold"><%= associate.shares_count || 0 %></div>
+        <div class="fw-semibold"><%= associate.shares_count %></div>
       </div>
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-3">
+        <div class="text-muted small"><%= t("activerecord.attributes.associate.shares_percentage") %></div>
+        <div class="fw-semibold"><%= "#{associate.shares_percentage} %" %></div>
+      </div>
+      <div class="col-12 col-md-3">
         <div class="text-muted small"><%= t("activerecord.attributes.associate.initial_contribution") %></div>
-        <div class="fw-semibold"><%= number_to_currency(associate.initial_contribution) if associate.initial_contribution.present? %></div>
+        <div class="fw-semibold"><%= number_to_currency(associate.initial_contribution) %></div>
       </div>
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-3">
         <div class="text-muted small"><%= t("activerecord.attributes.associate.current_account_balance") %></div>
-        <div class="fw-semibold"><%= number_to_currency(associate.current_account_balance) if associate.current_account_balance.present? %></div>
+        <div class="fw-semibold"><%= number_to_currency(associate.current_account_balance) %></div>
       </div>
     </div>
   </div>
