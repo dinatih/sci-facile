@@ -1,3 +1,5 @@
+[Voir la vidéo du test](public/demo-sci-facile.webm)
+___
 ![sci-facile hero](public/sci-facile-hero.png)
 
 ChatGPT chat : https://chatgpt.com/share/688c5277-82c4-8007-91d8-5d9a562e4a49
