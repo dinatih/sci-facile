@@ -45,8 +45,8 @@
   </div>
   
   <div class="card-footer d-flex gap-2">
-    <%= link_to t("helpers.show"), [property.company, property] %>
-    <%= link_to t("helpers.edit"), edit_company_property_path(property.company, property) %>
-    <%= link_to t("helpers.destroy"), [property.company, property], data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") }, class: "text-danger" %>
+    <%= link_to t("helpers.links.show"), [property.company, property] %>
+    <%= link_to t("helpers.links.edit"), edit_company_property_path(property.company, property) %>
+    <%= link_to t("helpers.links.destroy"), [property.company, property], data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") }, class: "text-danger" %>
   </div>
 </div>

@@ -17,4 +17,10 @@
       <p class="text-muted mb-0"><%= t("activerecord.attributes.general_meeting.minutes_text") %> —</p>
     <% end %>
   </div>
+  
+  <div class="card-footer d-flex gap-2">
+    <%= link_to t("helpers.links.show"), [general_meeting.company, general_meeting] %>
+    <%= link_to t("helpers.links.edit"), edit_company_general_meeting_path(general_meeting.company, general_meeting) %>
+    <%= link_to t("helpers.links.destroy"), [general_meeting.company, general_meeting], data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") }, class: "text-danger" %>
+  </div>
 </div>

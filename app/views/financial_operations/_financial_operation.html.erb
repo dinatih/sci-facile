@@ -6,16 +6,18 @@
       #<%= financial_operation.id %>
     </div>
     <div class="d-flex gap-2">
-      <% if financial_operation.category.present? %>
-        <span class="badge bg-primary">
-          <%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}", default: financial_operation.category) %>
-        </span>
-      <% end %>
-      <% if financial_operation.operation_type.present? %>
-        <span class="badge bg-secondary">
-          <%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}", default: financial_operation.operation_type) %>
-        </span>
-      <% end %>
+      <% badge_class =
+          case financial_operation.category
+          when "income" then "bg-success"
+          when "expense" then "bg-danger"
+          else "bg-info"
+          end %>
+      <span class="badge <%= badge_class %>">
+        <%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}", default: financial_operation.category) %>
+      </span>
+      <span class="badge bg-secondary">
+        <%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}", default: financial_operation.operation_type) %>
+      </span>
     </div>
   </div>
 
@@ -59,10 +61,9 @@
       <% end %>
     </div>
   </div>
-  <% if local_assigns[:show_actions] %>
-    <div class="card-footer d-flex gap-2">
-      <%= link_to t("helpers.show", model: t("activerecord.models.financial_operation.one")), [financial_operation.company, financial_operation], class: "btn btn-outline-primary btn-sm" %>
-      <%= link_to t("helpers.edit", model: t("activerecord.models.financial_operation.one")), edit_company_financial_operation_path(financial_operation.company, financial_operation), class: "btn btn-outline-secondary btn-sm" %>
-    </div>
-  <% end %>
+  <div class="card-footer d-flex gap-2">
+    <%= link_to t("helpers.links.show"), [financial_operation.company, financial_operation] %>
+    <%= link_to t("helpers.links.edit"), edit_company_financial_operation_path(financial_operation.company, financial_operation) %>
+    <%= link_to t("helpers.links.destroy"), [financial_operation.company, financial_operation], data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") }, class: "text-danger" %>
+  </div>
 </div>
