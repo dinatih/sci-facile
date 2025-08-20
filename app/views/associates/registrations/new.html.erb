@@ -17,7 +17,7 @@
 
       <div class="col-12">
         <%= form.fields_for :company do |company_fields| %>
-          <%= company_fields.label :name, "Nom de votre SCI", class: "form-label" %>
+          <%= company_fields.label :name, class: "form-label" %>
           <%= company_fields.text_field :name, class: "form-control" %>
         <% end %>
         </div>
