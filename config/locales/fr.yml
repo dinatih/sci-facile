@@ -63,6 +63,7 @@ fr:
         password: "Mot de passe"
         password_confirmation: "Confirmation du Mot de passe"
         shares_count: "Nombre de parts"
+        shares_percentage: "Pourcentage de parts"
         initial_contribution: "Apport initial (€)"
         current_account_balance: "Solde du compte courant (€)"
 
@@ -122,10 +123,10 @@ fr:
         minutes_text: "Procès-verbal"
 
   helpers:
-    new: "Créer un(e) %{model}"
-    show: "Voir"
-    edit: "Modifier"
-    destroy: "Supprimer"
+    links:
+      show: "Voir"
+      edit: "Modifier"
+      destroy: "Supprimer"
     are_you_sure: "Êtes-vous sûr ?"
 
     select:
@@ -145,9 +146,11 @@ fr:
         create: "Enregistrer cette Opération financière"
         update: "Modifier cette Opération financière"
       tenant:
-        submit: "Enregistrer ce(tte) Locataire"
-        # create: "Enregistrer ce Locataire"
-        # update: "Modifier ce Locataire"
+        create: "Enregistrer ce/cette Locataire"
+        update: "Modifier ce/cette Locataire"
+      general_meeting:
+        create: "Enregistrer cette Assemblée générale"
+        update: "Modifier cette Assemblée générale"
     errors_prohibited:
       one: "%{count} erreur a empêché ce/cette %{model} d'être enregistré(e) :"
       other: "%{count} erreurs ont empêché ce/cette %{model} d'être enregistré(e) :"

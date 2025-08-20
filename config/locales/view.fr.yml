@@ -1,0 +1,54 @@
+fr:
+  associates:
+    index:
+      title: "Liste des Associé(e)s"
+      no_items: "Aucun Associé(e) trouvé."
+      new_link: "Ajouter un(e) Associé(e)"
+    new:
+      title: "Nouvel(le) Associé(e)"
+    show:
+      title: "Détails de l'Associé(e)"
+      edit: "Modifier l'Associé(e)"
+      delete: "Supprimer l'Associé(e)"
+  properties:
+    index:
+      title: "Liste des Biens immobiliers"
+      no_items: "Aucun Bien immobilier trouvé."
+      new_link: "Ajouter un Bien immobilier"
+    new:
+      title: "Nouvelle Propriété"
+    show:
+      title: "Détails du Bien immobilier"
+      edit: "Modifier le Bien immobilier"
+      delete: "Supprimer le Bien immobilier"
+  financial_operations:
+    index:
+      title: "Liste des Opérations financières"
+      no_items: "Aucune Opération financière trouvée."
+      new_link: "Ajouter une Opération financière"
+    show:
+      title: "Détails de l'Opération financière"
+      edit: "Modifier l'Opération financière"
+      delete: "Supprimer l'Opération financière"
+  tenants:
+    index:
+      title: "Liste des Locataires"
+      no_items: "Aucun Locataire trouvé."
+      new_link: "Ajouter un(e) Locataire"
+    new:
+      title: "Nouveau Locataire"
+    show:
+      title: "Détails du Locataire"
+      edit: "Modifier le Locataire"
+      delete: "Supprimer le Locataire"
+  general_meetings:
+    index:
+      title: "Liste des Assemblées générales"
+      no_items: "Aucune Assemblée générale trouvée."
+      new_link: "Ajouter une Assemblée générale"
+    new:
+      title: "Nouvelle Assemblée générale"
+    show:
+      title: "Détails de l'Assemblée générale"
+      edit: "Modifier l'Assemblée générale"
+      delete: "Supprimer l'Assemblée générale"
