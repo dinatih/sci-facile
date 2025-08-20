@@ -64,6 +64,6 @@
   <div class="card-footer d-flex gap-2">
     <%= link_to t("helpers.links.show"), [financial_operation.company, financial_operation] %>
     <%= link_to t("helpers.links.edit"), edit_company_financial_operation_path(financial_operation.company, financial_operation) %>
-    <%= link_to t("helpers.links.destroy"), [financial_operation.company, financial_operation], data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") }, class: "text-danger" %>
+    <%= link_to t("helpers.links.destroy"), [financial_operation.company, financial_operation], data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") }, class: "link-danger" %>
   </div>
 </div>
