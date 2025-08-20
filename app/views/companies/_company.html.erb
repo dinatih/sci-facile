@@ -46,9 +46,9 @@
                 <td><%= associate.first_name %></td>
                 <td><%= associate.last_name %></td>
                 <td><%= mail_to associate.email, associate.email if associate.email.present? %></td>
-                <td class="text-end"><%= number_with_delimiter(associate.shares_count) %></td>
-                <td class="text-end"><%= number_to_currency(associate.initial_contribution) %></td>
-                <td class="text-end <%= associate.current_account_balance < 0 ? 'text-danger' : associate.current_account_balance > 0 ? 'text-success' : '' %>">
+                <td class="text-end text-nowrap"><%= number_with_delimiter(associate.shares_count) %></td>
+                <td class="text-end text-nowrap"><%= number_to_currency(associate.initial_contribution) %></td>
+                <td class="text-end text-nowrap <%= associate.current_account_balance < 0 ? 'text-danger' : associate.current_account_balance > 0 ? 'text-success' : '' %>">
                   <%= number_to_currency(associate.current_account_balance) %>
                 </td>
               </tr>
@@ -91,7 +91,7 @@
                 <td><%= property.address %></td>
                 <td class="text-truncate" style="max-width: 280px;"><%= property.description %></td>
                 <td><%= l(property.acquisition_date, format: :medium) if property.acquisition_date %></td>
-                <td class="text-end"><%= number_to_currency(property.acquisition_price) %></td>
+                <td class="text-end text-nowrap"><%= number_to_currency(property.acquisition_price) %></td>
               </tr>
             <% end %>
           </tbody>
@@ -136,7 +136,7 @@
                 <td><%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}") %></td>
                 <td><%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}") %></td>
                 <td class="text-truncate" style="max-width: 240px;"><%= financial_operation.label %></td>
-                <td class="text-end <%= financial_operation.amount < 0 ? 'text-danger' : financial_operation.amount > 0 ? 'text-success' : '' %>">
+                <td class="text-end text-nowrap <%= financial_operation.amount < 0 ? 'text-danger' : financial_operation.amount > 0 ? 'text-success' : '' %>">
                   <%= number_to_currency(financial_operation.amount) %>
                 </td>
                 <td><%= l(financial_operation.operation_date, format: :medium) if financial_operation.operation_date %></td>
@@ -186,8 +186,8 @@
                 <td><%= tenant.first_name %></td>
                 <td><%= tenant.last_name %></td>
                 <td><%= mail_to tenant.email, tenant.email if tenant.email.present? %></td>
-                <td class="text-end"><%= number_to_currency(tenant.rent_amount) %></td>
-                <td class="text-end"><%= number_to_currency(tenant.charges_amount) %></td>
+                <td class="text-end text-nowrap"><%= number_to_currency(tenant.rent_amount) %></td>
+                <td class="text-end text-nowrap"><%= number_to_currency(tenant.charges_amount) %></td>
                 <td><%= l(tenant.lease_start_date, format: :medium) if tenant.lease_start_date %></td>
                 <td><%= l(tenant.lease_end_date, format: :medium) if tenant.lease_end_date %></td>
               </tr>
