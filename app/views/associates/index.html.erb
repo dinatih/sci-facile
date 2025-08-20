@@ -1,16 +1,16 @@
-<% content_for :title, t("activerecord.models.associate.other") %>
+<% content_for :title, t(".title") %>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h4 class="mb-0">
     <i class="fas fa-users text-primary me-2"></i>
-    <%= t("activerecord.models.associate.other") %>
+    <%= t(".title") %>
   </h4>
-  <%= link_to t("helpers.new", model: t("activerecord.models.associate.one")), new_company_associate_path(@company), class: "btn btn-primary" %>
+  <%= link_to t(".new_link"), new_company_associate_path(@company), class: "btn btn-primary" %>
 </div>
 
 <div id="associates" class="row g-3">
   <% @associates.each do |associate| %>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 col-md-6">
       <%= render associate %>
     </div>
   <% end %>

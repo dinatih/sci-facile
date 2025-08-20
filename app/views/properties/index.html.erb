@@ -1,14 +1,17 @@
-<% content_for :title, t("activerecord.models.property.other") %>
+<% content_for :title, t(".title") %>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="h4 mb-0"><i class="fas fa-building text-primary me-2"></i><%= t("activerecord.models.property.other") %></h1>
+  <h1 class="h4 mb-0">
+    <i class="fas fa-building text-primary me-2"></i>
+    <%= t(".title") %>
+  </h1>
   <div class="d-flex align-items-center gap-2">
     <div class="btn-group me-2" role="group" aria-label="period switcher">
       <%= link_to "Mois", company_properties_path(@company, period: :month), class: "btn btn-sm btn-outline-secondary #{'active' if params[:period] == 'month'}" %>
       <%= link_to "Trimestre", company_properties_path(@company, period: :quarter), class: "btn btn-sm btn-outline-secondary #{'active' if params[:period] == 'quarter'}" %>
       <%= link_to "Année", company_properties_path(@company, period: :year), class: "btn btn-sm btn-outline-secondary #{'active' if params[:period].blank? || params[:period] == 'year'}" %>
     </div>
-    <%= link_to t("helpers.new", model: t("activerecord.models.property.one")), new_company_property_path(@company), class: "btn btn-primary" %>
+    <%= link_to t(".new_link", model: t("activerecord.models.property.one")), new_company_property_path(@company), class: "btn btn-primary" %>
   </div>
 </div>
 
