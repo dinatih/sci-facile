@@ -1,14 +1,10 @@
-<% content_for :title, t("activerecord.models.financial_operation.one") %>
+<% content_for :title, t(".title") %>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <h4 class="mb-0">
+  <h1 class="h4 mb-0">
     <i class="fas fa-file-invoice-dollar text-primary me-2"></i>
-    <%= t("activerecord.models.financial_operation.one") %>
-  </h4>
-  <div class="d-flex gap-2">
-    <%= link_to t("helpers.edit", model: t("activerecord.models.financial_operation.one")), edit_company_financial_operation_path(@company, @financial_operation), class: "btn btn-outline-secondary" %>
-    <%= button_to t("helpers.destroy", model: t("activerecord.models.financial_operation.one")), [@company, @financial_operation], form: { data: { turbo_method: :delete, turbo_confirm: t("helpers.are_you_sure") } }, class: "btn btn-danger" %>
-  </div>
+    <%= t(".title") %>
+  </h1>
 </div>
 
 <div class="mb-4">
