@@ -1,12 +1,7 @@
-<% content_for :title, t("helpers.new", model: t("activerecord.models.financial_operation.one")) %>
+<% content_for :title,t(".title") %>
 
-<h4 class="mb-3">
+<h1 class="h4 mb-3">
   <i class="fas fa-file-circle-plus text-primary me-2"></i>
-  <%= t("helpers.new", model: t("activerecord.models.financial_operation.one")) %>
-</h4>
-
+  <%=t(".title") %>
+</h1>
 <%= render "form", financial_operation: @financial_operation %>
-
-<div class="mt-3">
-  <%= link_to t("helpers.back", model: t("activerecord.models.financial_operation.other")), company_financial_operations_path(@company), class: "btn btn-link" %>
-</div>

@@ -1,12 +1,7 @@
-<% content_for :title, t("helpers.new", model: t("activerecord.models.tenant.one")) %>
+<% content_for :title, t(".title") %>
 
-<h4 class="mb-3">
+<h1 class="h4 mb-3">
   <i class="fas fa-user-plus text-primary me-2"></i>
-  <%= t("helpers.new", model: t("activerecord.models.tenant.one")) %>
-</h4>
-
+  <%= t(".title") %>
+</h1>
 <%= render "form", tenant: @tenant %>
-
-<div class="mt-3">
-  <%= link_to t("helpers.back", model: t("activerecord.models.tenant.other")), company_tenants_path(@company), class: "btn btn-link" %>
-</div>

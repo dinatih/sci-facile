@@ -1,8 +1,6 @@
-<% content_for :title, t("helpers.new", model: t("activerecord.models.general_meeting.one")) %>
+<% content_for :title, t(".title") %>
 
-<h1 class="h4 mb-3"><i class="fas fa-pen text-primary me-2"></i><%= t("helpers.new", model: t("activerecord.models.general_meeting.one")) %></h1>
+<h1 class="h4 mb-3">
+  <i class="fas fa-pen text-primary me-2"></i><%= t(".title") %>
+</h1>
 <%= render "form", general_meeting: @general_meeting %>
-
-<div class="mt-3">
-  <%= link_to t("helpers.back", model: t("activerecord.models.general_meeting.other")), company_general_meetings_path(@company), class: "btn btn-link" %>
-</div>
