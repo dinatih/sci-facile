@@ -49,7 +49,7 @@ RSpec.describe "SCI Facile", type: :system do
 
     # Supprimer le dernier associé
     page.accept_confirm do
-      all(".card-footer .text-danger").last.click
+      all(".card-footer .link-danger").last.click
     end
     expect(page).to have_no_content("Dav")
   end
@@ -87,7 +87,7 @@ RSpec.describe "SCI Facile", type: :system do
 
     # Supprimer la dernière propriété
     page.accept_confirm do
-      all(".card-footer .text-danger").last.click
+      all(".card-footer .link-danger").last.click
     end
     expect(page).to have_no_content("Villa Modifiée")
   end
@@ -126,7 +126,7 @@ RSpec.describe "SCI Facile", type: :system do
 
     # Supprimer la dernière opération
     page.accept_confirm do
-      all(".card-footer .text-danger").last.click
+      all(".card-footer .link-danger").last.click
     end
     expect(page).to have_no_content("Loyer septembre")
   end
@@ -201,7 +201,7 @@ RSpec.describe "SCI Facile", type: :system do
 
     # Supprimer la dernière AG
     page.accept_confirm do
-      all(".card-footer .text-danger").last.click
+      all(".card-footer .link-danger").last.click
     end
     expect(page).to have_no_content("AG extraordinaire")
   end
