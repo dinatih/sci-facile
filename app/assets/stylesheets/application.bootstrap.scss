@@ -10,3 +10,95 @@
   text-align: center;
   display: inline-block;
 }
+
+    body {
+        min-height: 100vh;
+        // background: linear-gradient(135deg, #eb6864 0%, #764ba2 100%);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .glassmorphism-navbar {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(135, 45, 31, 0.37);
+        border-radius: 0;
+        transition: all 0.3s ease;
+    }
+
+    .glassmorphism-navbar .navbar-brand {
+        // font-weight: 600;
+        // font-size: 1.25rem;
+        transition: all 0.3s ease;
+    }
+
+    .glassmorphism-navbar .navbar-brand:hover {
+        transform: translateY(-1px);
+    }
+
+    .glassmorphism-navbar .navbar-nav .nav-link {
+        // font-weight: 500;
+        // padding: 0.75rem 1rem !important;
+        border-radius: 8px;
+        // margin: 0 0.25rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .glassmorphism-navbar .navbar-nav .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .glassmorphism-navbar .navbar-nav .nav-link.active {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .glassmorphism-navbar .navbar-toggler {
+        border: none;
+        // padding: 0.5rem;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .glassmorphism-navbar .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+    }
+
+    .glassmorphism-navbar .navbar-toggler:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .dropdown-menu {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border-radius: 12px;
+        padding: 0.5rem;
+    }
+
+    .dropdown-item {
+        color: rgba(255, 255, 255, 0.85);
+        border-radius: 8px;
+        margin: 0.25rem 0;
+        transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 1);
+        transform: translateX(5px);
+    }
+
+    /* Animation au scroll */
+    .navbar-scrolled {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 12px 40px 0 rgba(135, 31, 31, 0.5);
+    }
