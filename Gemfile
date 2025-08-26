@@ -63,6 +63,8 @@ group :development, :test do
   gem "railroady"
 
   gem "database_cleaner-active_record"
+
+  gem "annotaterb"
 end
 
 group :development do
