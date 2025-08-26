@@ -8,6 +8,15 @@
   <%= link_to t(".new_link"), new_company_financial_operation_path(@company), class: "btn btn-primary" %>
 </div>
 
+<%= form_with url: company_financial_operations_path(@company), method: :get, local: true, class: "mb-3" do %>
+  <div class="btn-group" role="group">
+    <%= button_to t(".all_types"), company_financial_operations_path(@company), method: :get, params: {}, class: "btn btn-outline-primary#{' active' unless params[:operation_type].present?}" %>
+    <% FinancialOperation.operation_types.each do |key, label| %>
+      <%= button_to label, company_financial_operations_path(@company, operation_type: key), method: :get, params: { operation_type: key }, class: "btn btn-outline-primary#{' active' if params[:operation_type] == key}" %>
+    <% end %>
+  </div>
+<% end %>
+
 <div id="financial_operations" class="row g-3">
   <% @financial_operations.each do |financial_operation| %>
     <div class="col-12 col-md-6">

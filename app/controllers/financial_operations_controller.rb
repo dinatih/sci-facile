@@ -4,7 +4,11 @@ class FinancialOperationsController < ApplicationController
 
   # GET /financial_operations or /financial_operations.json
   def index
+    @company = Company.find(params[:company_id])
     @financial_operations = @company.financial_operations
+    if params[:operation_type].present?
+      @financial_operations = @financial_operations.where(operation_type: params[:operation_type])
+    end
   end
 
   # GET /financial_operations/1 or /financial_operations/1.json

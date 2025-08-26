@@ -26,6 +26,8 @@ fr:
       title: "Liste des Opérations financières"
       no_items: "Aucune Opération financière trouvée."
       new_link: "Ajouter une Opération financière"
+      all_types: "Tous les types"
+      filter: "Filtrer"      
     show:
       title: "Détails de l'Opération financière"
       edit: "Modifier l'Opération financière"
