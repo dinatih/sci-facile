@@ -35,5 +35,13 @@ FactoryBot.define do
       property { { name: "Appartement Parisien 13eme", address: "65 Rue du Chevaleret, 75013 Paris", acquisition_date: "2024-05-01", acquisition_price: 200000 } }
       property { { name: "Appartement Fort de France", address: "à définir, 97200 Fort de France", acquisition_date: "2024", acquisition_price: 150000 } }
     end
+
+    trait :realistic do
+      after(:create) do |company|
+        create_list(:associate, 3, company: company)
+        create_list(:property, 6, company: company)
+        create_list(:financial_operation, 100, :random_facture, company: company)
+      end
+    end
   end
 end

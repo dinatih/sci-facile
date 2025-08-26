@@ -12,6 +12,8 @@ DatabaseCleaner.clean_with :truncation
 
 FactoryBot.create(:admin_user, email: 'admin@sci-facile.com')
 
+company = FactoryBot.create(:company, :realistic)
+
 # Create 5 companies with full data
 5.times do
   company = FactoryBot.create(:company, :complete)
