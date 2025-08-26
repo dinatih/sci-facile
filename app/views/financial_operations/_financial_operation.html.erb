@@ -13,10 +13,10 @@
           else "bg-info"
           end %>
       <span class="badge <%= badge_class %>">
-        <%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}", default: financial_operation.category) %>
+        <%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}") %>
       </span>
       <span class="badge bg-secondary">
-        <%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}", default: financial_operation.operation_type) %>
+        <%= t("activerecord.attributes.financial_operation.operation_types.#{financial_operation.operation_type}") %>
       </span>
     </div>
   </div>
@@ -33,7 +33,9 @@
       </div>
       <div class="col-md-4">
         <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.operation_date") %></div>
-        <div class="fw-semibold"><%= l(financial_operation.operation_date, format: :long) if financial_operation.operation_date %></div>
+        <div class="fw-semibold">
+          <%= l(financial_operation.operation_date, format: :long) if financial_operation.operation_date %>
+        </div>
       </div>
       <div class="col-md-4">
         <div class="text-muted small"><%= t("activerecord.attributes.financial_operation.property") %></div>
