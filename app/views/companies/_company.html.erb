@@ -130,7 +130,7 @@
             </tr>
           </thead>
           <tbody>
-            <% company.financial_operations.each_with_index do |financial_operation, index| %>
+            <% company.financial_operations.order(operation_date: :desc).each_with_index do |financial_operation, index| %>
               <tr>
                 <th scope="row"><%= link_to index + 1, company_financial_operation_path(company, financial_operation) %></th>
                 <td><%= t("activerecord.attributes.financial_operation.categories.#{financial_operation.category}") %></td>
