@@ -1,162 +1,122 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 fr:
-  app_name: "SCI Facile"
-  
+  app_name: SCI Facile
   activerecord:
     models:
       company:
-        one: "SCI"
-        other: "SCIs"
+        one: SCI
+        other: SCIs
       associate:
-        one: "Associé(e)"
-        other: "Associé(e)s"
+        one: Associé(e)
+        other: Associé(e)s
       property:
-        one: "Bien immobilier"
-        other: "Biens immobiliers"
+        one: Bien immobilier
+        other: Biens immobiliers
       tenant:
-        one: "Locataire"
-        other: "Locataires"
+        one: Locataire
+        other: Locataires
       financial_operation:
-        one: "Opération financière"
-        other: "Opérations financières"
+        one: Opération financière
+        other: Opérations financières
       general_meeting:
-        one: "Assemblée générale"
-        other: "Assemblées générales"
-
+        one: Assemblée générale
+        other: Assemblées générales
     attributes:
       company:
-        name: "Nom de la SCI"
-
+        name: Nom de la SCI
       associate:
-        company: "SCI"
-        first_name: "Prénom"
-        last_name: "Nom"
-        email: "Email"
-        password: "Mot de passe"
-        password_confirmation: "Confirmation du Mot de passe"
-        shares_count: "Nombre de parts"
-        shares_percentage: "Pourcentage de parts"
-        initial_contribution: "Apport initial (€)"
-        current_account_balance: "Solde du compte courant (€)"
-
+        company: SCI
+        first_name: Prénom
+        last_name: Nom
+        email: Email
+        password: Mot de passe
+        password_confirmation: Confirmation du Mot de passe
+        shares_count: Nombre de parts
+        shares_percentage: Pourcentage de parts
+        initial_contribution: Apport initial (€)
+        current_account_balance: Solde du compte courant (€)
       property:
-        company: "SCI"
-        address: "Adresse"
-        description: "Description"
-        acquisition_date: "Date d'acquisition"
-        acquisition_price: "Prix d'acquisition (€)"
-
+        company: SCI
+        address: Adresse
+        description: Description
+        acquisition_date: Date d'acquisition
+        acquisition_price: Prix d'acquisition (€)
       tenant:
-        property: "Bien immobilier"
-        property_id: "Bien immobilier"
-        first_name: "Prénom"
-        last_name: "Nom"
-        email: "Email"
-        rent_amount: "Montant du loyer (€)"
-        charges_amount: "Charges mensuelles (€)"
-        lease_start_date: "Début du bail"
-        lease_end_date: "Fin du bail"
-
+        property: Bien immobilier
+        property_id: Bien immobilier
+        first_name: Prénom
+        last_name: Nom
+        email: Email
+        rent_amount: Montant du loyer (€)
+        charges_amount: Charges mensuelles (€)
+        lease_start_date: Début du bail
+        lease_end_date: Fin du bail
+        lease: Bail
       financial_operation:
-        company: "SCI"
-        property: "Bien immobilier"
-        property_id: "Bien immobilier"
-        tenant: "Locataire"
-        tenant_id: "Locataire"
-        associate: "Associé(e)"
-        associate_id: "Associé(e)"
-        category: "Catégorie"
+        company: SCI
+        property: Bien immobilier
+        property_id: Bien immobilier
+        tenant: Locataire
+        tenant_id: Locataire
+        associate: Associé(e)
+        associate_id: Associé(e)
+        category: Catégorie
         categories:
-          income: "Recette"
-          expense: "Dépense"
-          contribution: "Apport"
-          refund: "Remboursement"
-        operation_type: "Type d'opération"
+          income: Recette
+          expense: Dépense
+          contribution: Apport
+          refund: Remboursement
+        operation_type: Type d'opération
         operation_types:
-          rent: "Loyer"
-          charges: "Charges"
-          insurance: "Assurance"
-          tax: "Taxe"
-          maintenance: "Travaux"
-          initial_contribution: "Apport initial"
-          current_account_contribution: "Apport en compte courant"
-          current_account_refund: "Remboursement compte courant"
-          other: "Autre"
-        label: "Libellé"
-        amount: "Montant (€)"
-        operation_date: "Date de l'opération"
-        description: "Description"
-        reference_number: "Référence"
-
+          rent: Loyer
+          charges: Charges
+          insurance: Assurance
+          tax: Taxe
+          maintenance: Travaux
+          initial_contribution: Apport initial
+          current_account_contribution: Apport en compte courant
+          current_account_refund: Remboursement compte courant
+          other: Autre
+        label: Libellé
+        amount: Montant (€)
+        operation_date: Date de l'opération
+        description: Description
+        reference_number: Référence
       general_meeting:
-        company: "SCI"
-        date: "Date"
-        title: "Titre"
-        minutes_text: "Procès-verbal"
-
+        company: SCI
+        date: Date
+        title: Titre
+        minutes_text: Procès-verbal
   helpers:
     links:
-      show: "Voir"
-      edit: "Modifier"
-      destroy: "Supprimer"
-    are_you_sure: "Êtes-vous sûr ?"
-
+      show: Voir
+      edit: Modifier
+      destroy: Supprimer
+    are_you_sure: Êtes-vous sûr ?
     select:
-      prompt: "Sélectionner"
-
+      prompt: Sélectionner
     submit:
-      create: "Créer"
-      update: "Mettre à jour"
-
+      create: Créer
+      update: Mettre à jour
       associate:
-        create: "Enregistrer cet Associé(e)"
-        update: "Modifier cet Associé(e)"
+        create: Enregistrer cet Associé(e)
+        update: Modifier cet Associé(e)
       property:
-        create: "Enregistrer ce Bien immobilier"
-        update: "Modifier ce Bien immobilier"
+        create: Enregistrer ce Bien immobilier
+        update: Modifier ce Bien immobilier
       financial_operation:
-        create: "Enregistrer cette Opération financière"
-        update: "Modifier cette Opération financière"
+        create: Enregistrer cette Opération financière
+        update: Modifier cette Opération financière
       tenant:
-        create: "Enregistrer ce/cette Locataire"
-        update: "Modifier ce/cette Locataire"
+        create: Enregistrer ce/cette Locataire
+        update: Modifier ce/cette Locataire
       general_meeting:
-        create: "Enregistrer cette Assemblée générale"
-        update: "Modifier cette Assemblée générale"
+        create: Enregistrer cette Assemblée générale
+        update: Modifier cette Assemblée générale
     errors_prohibited:
-      one: "%{count} erreur a empêché ce/cette %{model} d'être enregistré(e) :"
-      other: "%{count} erreurs ont empêché ce/cette %{model} d'être enregistré(e) :"
-
+      one: '%{count} erreur a empêché ce/cette %{model} d''être enregistré(e) :'
+      other: '%{count} erreurs ont empêché ce/cette %{model} d''être enregistré(e) :'
   errors:
-    format: "%{attribute} %{message}"
+    format: '%{attribute} %{message}'
     messages:
       accepted: doit être accepté(e)
       blank: doit être rempli(e)
@@ -172,8 +132,8 @@ fr:
       invalid: n'est pas valide
       less_than: doit être inférieur à %{count}
       less_than_or_equal_to: doit être inférieur ou égal à %{count}
-      model_invalid: "Validation échouée: %{errors}"
-      record_invalid: "L'enregistrement est invalide : %{errors}"
+      model_invalid: 'Validation échouée: %{errors}'
+      record_invalid: 'L''enregistrement est invalide : %{errors}'
       not_a_number: n'est pas un nombre
       not_an_integer: doit être un nombre entier
       odd: doit être impair
@@ -189,68 +149,62 @@ fr:
         one: ne fait pas la bonne longueur (doit comporter un seul caractère)
         other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
       other_than: doit être différent de %{count}
-      operation_type_incompatible_with_category: "%{operation_type} n'est pas compatible avec la catégorie %{category}"
-    # template:
-    #   body: 'Veuillez vérifier les champs suivants : '
-    #   header:
-    #     one: 'Impossible d''enregistrer ce/cette %{model} : 1 erreur'
-    #     other: 'Impossible d''enregistrer ce/cette %{model} : %{count} erreurs'
-
+      operation_type_incompatible_with_category: '%{operation_type} n''est pas compatible avec la catégorie %{category}'
   date:
     abbr_day_names:
-    - dim
-    - lun
-    - mar
-    - mer
-    - jeu
-    - ven
-    - sam
+      - dim
+      - lun
+      - mar
+      - mer
+      - jeu
+      - ven
+      - sam
     abbr_month_names:
-    -
-    - jan.
-    - fév.
-    - mar.
-    - avr.
-    - mai
-    - juin
-    - juil.
-    - août
-    - sept.
-    - oct.
-    - nov.
-    - déc.
+      - null
+      - jan.
+      - fév.
+      - mar.
+      - avr.
+      - mai
+      - juin
+      - juil.
+      - août
+      - sept.
+      - oct.
+      - nov.
+      - déc.
     day_names:
-    - dimanche
-    - lundi
-    - mardi
-    - mercredi
-    - jeudi
-    - vendredi
-    - samedi
+      - dimanche
+      - lundi
+      - mardi
+      - mercredi
+      - jeudi
+      - vendredi
+      - samedi
     formats:
-      default: "%d/%m/%Y"
-      short: "%e %b"
-      medium: "%e %b %Y"
-      long: "%e %B %Y"
-      month: "%B %Y"
+      default: '%d/%m/%Y'
+      short: '%e %b'
+      medium: '%e %b %Y'
+      long: '%e %B %Y'
+      month: '%B %Y'
     month_names:
-    -
-    - janvier
-    - février
-    - mars
-    - avril
-    - mai
-    - juin
-    - juillet
-    - août
-    - septembre
-    - octobre
-    - novembre
-    - décembre
+      - null
+      - janvier
+      - février
+      - mars
+      - avril
+      - mai
+      - juin
+      - juillet
+      - août
+      - septembre
+      - octobre
+      - novembre
+      - décembre
     order:
-    - :day
-    - :month
-    - :year
+      - ':day'
+      - ':month'
+      - ':year'
   datetime:
     distance_in_words:
       about_x_hours:
@@ -279,16 +233,16 @@ fr:
         other: plus de %{count} ans
       x_days:
         one: 1 jour
-        other: "%{count} jours"
+        other: '%{count} jours'
       x_minutes:
         one: 1 minute
-        other: "%{count} minutes"
+        other: '%{count} minutes'
       x_months:
         one: 1 mois
-        other: "%{count} mois"
+        other: '%{count} mois'
       x_seconds:
         one: 1 seconde
-        other: "%{count} secondes"
+        other: '%{count} secondes'
     prompts:
       day: Jour
       hour: Heure
@@ -299,22 +253,22 @@ fr:
   number:
     currency:
       format:
-        delimiter: " "
-        format: "%n %u"
+        delimiter: ' '
+        format: '%n %u'
         precision: 2
-        separator: ","
+        separator: ','
         significant: false
         strip_insignificant_zeros: false
-        unit: "€"
+        unit: €
     format:
-      delimiter: " "
+      delimiter: ' '
       precision: 3
-      separator: ","
+      separator: ','
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: "%n %u"
+        format: '%n %u'
         units:
           billion: milliard
           million: million
@@ -328,7 +282,7 @@ fr:
         significant: true
         strip_insignificant_zeros: true
       storage_units:
-        format: "%n %u"
+        format: '%n %u'
         units:
           byte:
             one: octet
@@ -340,18 +294,18 @@ fr:
     percentage:
       format:
         precision: 0
-        format: "%n%"
+        format: '%n%'
     precision:
       format:
         delimiter: ''
   support:
     array:
-      last_word_connector: " et "
-      two_words_connector: " et "
-      words_connector: ", "
+      last_word_connector: ' et '
+      two_words_connector: ' et '
+      words_connector: ', '
   time:
     formats:
-      default: "%d %B %Y %Hh %Mmin %Ss"
-      long: "%A %d %B %Y %Hh%M"
-      short: "%d %b %Hh%M"
-      invoice: "%Y%m%d"
+      default: '%d %B %Y %Hh %Mmin %Ss'
+      long: '%A %d %B %Y %Hh%M'
+      short: '%d %b %Hh%M'
+      invoice: '%Y%m%d'
