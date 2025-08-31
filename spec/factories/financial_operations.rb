@@ -98,14 +98,6 @@ FactoryBot.define do
       end
     end
 
-    trait :rental_income do
-      category { "income" }
-      operation_type { "rent" }
-      label { "Loyer" }
-      amount { rand(400..1500) }
-      with_property_with_tenant_from_company
-    end
-
     trait :expense do
       category { "expense" }
       operation_type { "charges" }
@@ -160,14 +152,6 @@ FactoryBot.define do
       amount { rand(400..1500) }
       with_property_with_tenant_from_company
       operation_date { Faker::Date.between(from: 1.year.ago, to: 1.month.ago) }
-    end
-
-    trait :monthly_rent do
-      category { "income" }
-      operation_type { "rent" }
-      label { "Loyer mensuel" }
-      amount { rand(400..1500) }
-      with_property_with_tenant_from_company
     end
 
     trait :condo_charges do
@@ -322,10 +306,10 @@ FactoryBot.define do
       with_property_from_company
     end
 
-    trait :random_facture do
+    trait :random_invoice do
       transient do
         available_traits { [
-          :monthly_rent, :condo_charges, :insurance, :property_tax, :garbage_tax,
+          :condo_charges, :insurance, :property_tax, :garbage_tax,
           :renovation, :management_fees, :agency_fees, :water_bill, :electricity_bill,
           :gas_bill, :internet_bill, :equipment_replacement, :initial_contribution,
           :current_account_contribution, :current_account_refund, :notary_fees,
