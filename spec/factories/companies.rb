@@ -47,25 +47,25 @@ FactoryBot.define do
           { description: "Appartement Fort de France", address: "à définir, 97200 Fort de France", acquisition_date: "2024-01-01", acquisition_price: 150000 }
         ]
 
-        properties = props.map { |attrs| create(:property, attrs.merge(company: company)) }
-
-        # Répartit les 12 tenants sur les propriétés (2 ou 3 par propriété)
-        tenants_count = 12
-        properties.each_with_index do |property, idx|
-          n = tenants_count / properties.size + (idx < tenants_count % properties.size ? 1 : 0)
-          tenants = create_list(:tenant, n, property: property)
-
-          # Ajoute une opération de loyer 1 mois après la création de chaque tenant
-          tenants.each do |tenant|
-            create(:financial_operation,
-              :monthly_rent,
-              company: company,
-              property: property,
-              tenant: tenant,
-              operation_date: tenant.created_at + 1.month
-            )
+        props.map.with_index do |attrs, idx|
+          create(:property, attrs.merge(company: company)).tap do |property|
+            tenant = create(:tenant, property: property, charges_amount: rand(50..150), rent_amount: rand(800..1500))
+            12.times do |i|
+              create(:financial_operation,
+                category: "income",
+                operation_type: "rent",
+                label: "Loyer + Charges",
+                amount: tenant.rent_amount + tenant.charges_amount,
+                company: company,
+                property: property,
+                tenant: tenant,
+                operation_date: (Date.current - 11.months + i.months).beginning_of_month
+              )
+            end
           end
         end
+        # Ajoute 100 opérations financières randomisées
+        create_list(:financial_operation, 100, :random_invoice, company: company)
       end
     end
   end
