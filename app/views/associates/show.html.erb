@@ -10,3 +10,37 @@
 <div class="mb-4">
   <%= render @associate %>
 </div>
+
+<h5 class="mt-4">Opérations financières liées à l'associé</h5>
+<div class="table-responsive mb-4">
+  <table class="table table-sm table-striped align-middle">
+    <thead>
+      <tr>
+        <th><%= t("activerecord.attributes.financial_operation.operation_date") %></th>
+        <th><%= t("activerecord.attributes.financial_operation.operation_type") %></th>
+        <th><%= t("activerecord.attributes.financial_operation.category") %></th>
+        <th><%= t("activerecord.attributes.financial_operation.label") %></th>
+        <th><%= t("activerecord.attributes.financial_operation.amount") %></th>
+        <th><%= t("activerecord.models.property.one") %></th>
+        <th><%= t("activerecord.models.tenant.one") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @associate.financial_operations.order(operation_date: :desc).each do |fo| %>
+        <tr>
+          <td><%= l(fo.operation_date) %></td>
+          <td>
+            <%= t("activerecord.attributes.financial_operation.operation_types.#{fo.operation_type}") %>
+          </td>
+          <td>
+            <%= t("activerecord.attributes.financial_operation.categories.#{fo.category}") %>
+          </td>
+          <td><%= fo.label %></td>
+          <td class="text-end text-nowrap"><%= number_to_currency(fo.amount) %></td>
+          <td><%= fo.property&.description %></td>
+          <td><%= fo.tenant.present? ? [fo.tenant.first_name, fo.tenant.last_name].join(" ") : "-" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
