@@ -24,4 +24,5 @@
 #
 class Tenant < ApplicationRecord
   belongs_to :property
+  has_many :financial_operations, dependent: :destroy
 end
