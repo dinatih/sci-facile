@@ -12,3 +12,71 @@
 </div>
 
 <%= render @property %>
+
+<hr>
+
+<h2 class="h5 mt-4">Locataires du bien</h2>
+<div class="table-responsive mb-4">
+  <table class="table table-sm table-striped align-middle">
+    <thead>
+      <tr>
+        <th><%= t("activerecord.attributes.tenant.name") %></th>
+        <th><%= t("activerecord.attributes.tenant.email") %></th>
+        <th><%= t("activerecord.attributes.tenant.rent_amount") %></th>
+        <th><%= t("activerecord.attributes.tenant.charges_amount") %></th>
+        <th><%= t("activerecord.attributes.tenant.lease") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @property.tenants.each do |tenant| %>
+        <tr>
+          <td><%= [tenant.first_name, tenant.last_name].join(" ") %></td>
+          <td><%= mail_to tenant.email if tenant.email.present? %></td>
+          <td class="text-end text-nowrap"><%= number_to_currency(tenant.rent_amount) %></td>
+          <td class="text-end text-nowrap"><%= number_to_currency(tenant.charges_amount) %></td>
+          <td>
+            <%= l(tenant.lease_start_date) %> - <%= l(tenant.lease_end_date) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="h5 mt-4">Opérations financières liées au bien</h2>
+<div class="table-responsive mb-4">
+  <table class="table table-sm table-striped align-middle">
+    <thead>
+      <tr>
+        <th><%= t("activerecord.attributes.financial_operation.operation_date") %></th>
+        <th><%= t("activerecord.attributes.financial_operation.operation_types.one") %></th>
+        <th><%= t("activerecord.attributes.financial_operation.categories.one") %></th>
+        <th><%= t("activerecord.attributes.financial_operation.label") %></th>
+        <th><%= t("activerecord.attributes.financial_operation.amount") %></th>
+        <th><%= t("activerecord.models.tenant.one") %></th>
+        <th><%= t("activerecord.models.associate.one") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @property.financial_operations.order(operation_date: :desc).each do |fo| %>
+        <tr>
+          <td><%= l(fo.operation_date) %></td>
+          <td>
+            <%= t("activerecord.attributes.financial_operation.operation_types.#{fo.operation_type}", default: fo.operation_type) %>
+          </td>
+          <td>
+            <%= t("activerecord.attributes.financial_operation.categories.#{fo.category}", default: fo.category) %>
+          </td>
+          <td><%= fo.label %></td>
+          <td class="text-end text-nowrap"><%= number_to_currency(fo.amount) %></td>
+          <td>
+            <%= fo.tenant.present? ? [fo.tenant.first_name, fo.tenant.last_name].join(" ") : "-" %>
+          </td>
+          <td>
+            <%= fo.associate.present? ? [fo.associate.first_name, fo.associate.last_name].join(" ") : "-" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
