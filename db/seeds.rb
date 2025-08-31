@@ -25,7 +25,6 @@ company = FactoryBot.create(:company, :realistic)
 
   # Add financial operations
   3.times do
-    FactoryBot.create(:financial_operation, :rental_income, company: company)
     FactoryBot.create(:financial_operation, :expense, company: company)
   end
   FactoryBot.create(:financial_operation, :contribution, company: company)
