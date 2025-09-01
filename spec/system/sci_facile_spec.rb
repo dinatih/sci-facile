@@ -33,13 +33,13 @@ RSpec.describe "SCI Facile", type: :system do
 
     # Cliquer sur "Modifier" et éditer une donnée
     click_link I18n.t("helpers.links.edit")
-    fill_in Associate.human_attribute_name(:first_name), with: "Dav"
+    fill_in Associate.human_attribute_name(:first_name), with: "Toto"
     click_button I18n.t("helpers.submit.associate.update")
 
     # Vérifier la redirection vers le show après édition
     associate = new_associate
     expect(page).to have_current_path(company_associate_path(associate.company, associate))
-    expect(page).to have_content("Dav")
+    expect(page).to have_content("Toto")
     expect(page).to have_content("Dupont")
 
     # Cliquer sur "Associés" dans la navigation de la société
@@ -51,7 +51,7 @@ RSpec.describe "SCI Facile", type: :system do
     page.accept_confirm do
       all(".card-footer .link-danger").last.click
     end
-    expect(page).to have_no_content("Dav")
+    expect(page).to have_no_content("Toto")
   end
 
   def properties_crud(current_company)
@@ -129,6 +129,16 @@ RSpec.describe "SCI Facile", type: :system do
       all(".card-footer .link-danger").last.click
     end
     expect(page).to have_no_content("Loyer septembre")
+
+    click_button "loyer"
+    click_button "charges"
+    click_button "assurance"
+    click_button "taxe"
+    click_button "travaux"
+    click_button "apport initial"
+    click_button "apport en compte courant"
+    click_button "remboursement compte courant"
+    click_button "autre"
   end
 
   def tenants_crud(current_company)
@@ -150,12 +160,12 @@ RSpec.describe "SCI Facile", type: :system do
 
     # Modifier le locataire
     click_link I18n.t("helpers.links.edit")
-    fill_in Tenant.human_attribute_name(:first_name), with: "Jean-Pierre"
+    fill_in Tenant.human_attribute_name(:first_name), with: "JJean-Pierre"
     click_button I18n.t("helpers.submit.tenant.update")
 
     # Vérifier la redirection vers le show après édition
     expect(page).to have_current_path(company_tenant_path(current_company, tenant))
-    expect(page).to have_content("Jean-Pierre")
+    expect(page).to have_content("JJean-Pierre")
 
     # Retour à la liste des locataires via la navigation
     within("#company-navbar") do
@@ -163,10 +173,12 @@ RSpec.describe "SCI Facile", type: :system do
     end
 
     # Supprimer le dernier locataire
-    page.accept_confirm do
-      all(".card-footer .link-danger").first.click
+    within(:xpath, "//div[contains(@class, 'card')][.//div[contains(@class, 'card-header') and contains(., 'JJean-Pierre')]]") do
+      page.accept_confirm do
+        find(".card-footer .link-danger").click
+      end
     end
-    expect(page).to have_no_content("Jean-Pierre")
+    expect(page).to have_no_content("JJean-Pierre")
   end
 
   def general_meetings_crud(current_company)
@@ -211,7 +223,7 @@ RSpec.describe "SCI Facile", type: :system do
     # Seed completed: 1 admin users,5 companies, 15 associates, 20 properties, 10 tenants,
     #                 60 financial operations, 10 general meetings created.
     visit "/"
-    current_company = Company.last
+    current_company = Company.first
     visit company_path(current_company)
     associates_crud(current_company)
     properties_crud(current_company)
