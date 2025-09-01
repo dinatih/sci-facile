@@ -98,14 +98,6 @@ FactoryBot.define do
       end
     end
 
-    trait :expense do
-      category { "expense" }
-      operation_type { "charges" }
-      label { %w[Travaux Charges Assurance Taxe].sample }
-      amount { rand(50..2000) }
-      with_property_from_company
-    end
-
     trait :contribution do
       category { "contribution" }
       label { "Apport en compte courant" }
@@ -126,6 +118,7 @@ FactoryBot.define do
       label { "Travaux de maintenance" }
       amount { rand(200..3000) }
       with_property_from_company
+      with_associate_from_company
     end
 
     trait :large_amount do
@@ -242,12 +235,22 @@ FactoryBot.define do
       with_property_from_company
     end
 
+    trait :equipment do
+      category { "expense" }
+      operation_type { "maintenance" }
+      label { [ "Canapé rouge", "Balais", "Tondeuse", "Rideaux", "Micro-ondes", "Peinture", "Radiateur" ].sample }
+      amount { rand(200..2000) }
+      with_property_from_company
+      with_associate_from_company
+    end
+
     trait :equipment_replacement do
       category { "expense" }
       operation_type { "maintenance" }
       label { "Remplacement d’équipement" }
       amount { rand(200..2000) }
       with_property_from_company
+      with_associate_from_company
     end
 
     trait :initial_contribution do
@@ -296,6 +299,7 @@ FactoryBot.define do
       label { "Frais de réparation urgente" }
       amount { rand(200..2000) }
       with_property_from_company
+      with_associate_from_company
     end
 
     trait :exceptional_expense do
@@ -304,11 +308,13 @@ FactoryBot.define do
       label { "Dépense exceptionnelle" }
       amount { rand(500..5000) }
       with_property_from_company
+      with_associate_from_company
     end
 
     trait :random_invoice do
       transient do
         available_traits { [
+          :maintenance, :equipment,
           :condo_charges, :insurance, :property_tax, :garbage_tax,
           :renovation, :management_fees, :agency_fees, :water_bill, :electricity_bill,
           :gas_bill, :internet_bill, :equipment_replacement, :initial_contribution,
